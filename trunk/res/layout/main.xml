@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<TableLayout android:id="@+id/LinearLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content" xmlns:android="http://schemas.android.com/apk/res/android">
-<ImageView android:id="@+id/ImageView01" android:scaleType="fitXY" android:src="@drawable/logo" android:adjustViewBounds="false" android:layout_height="fill_parent" android:layout_width="fill_parent"></ImageView>
-
-<LinearLayout android:id="@+id/LinearLayout02" android:layout_width="wrap_content" android:layout_height="wrap_content"><GridView android:id="@+id/GridView01" android:numColumns="3" android:layout_width="wrap_content" android:layout_height="wrap_content">
-</GridView></LinearLayout>
-</TableLayout>

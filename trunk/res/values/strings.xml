@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, iCua</string>
+    <string name="app_name">iCua</string>
+    
+      <string name="remote_service_started">iCua service has started</string>
+    <string name="remote_service_stopped">iCua service has stopped</string>
+    <string name="remote_service_label">iCua Player 0.9b</string>
+
+    
+    
+    
+<string name="About">iCua 1.0 Projecte final de carrera de Jordi Pamies Barrero i tutoritzat per Antoni Soto Riera /n http://dev-icua.blogspot.com</string>
+</resources>

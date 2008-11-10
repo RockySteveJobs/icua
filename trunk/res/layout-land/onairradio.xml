@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+<TableLayout android:id="@+id/TableLayout01" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="fill_parent" android:layout_width="fill_parent" android:fitsSystemWindows="true">
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" 
+		android:id="@+id/txt"
+		android:text="Song - Artist"
+android:textSize="20sp"
+android:textStyle="bold"
+android:textColor="#ffff6600"
+		android:layout_gravity="center_horizontal" android:gravity="center_horizontal">
+		</TextView>
+	<TableRow android:id="@+id/TableRow02" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="5px">
+		<ImageView android:id="@+id/cover" android:src="@drawable/logo" android:adjustViewBounds="false" android:scaleType="centerCrop" android:layout_height="230px" android:layout_width="230px">
+		</ImageView>
+		<TableLayout android:id="@+id/TableLayout02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical">
+			<TableRow android:id="@+id/TableRow03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
+				
+				
+				
+				<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/stop" android:src="@drawable/media_playback_stop">
+				</ImageButton><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/next" android:src="@drawable/media_skip_forward">
+				</ImageButton>	
+			
+			</TableRow>
+
+
+
+   		</TableLayout>
+
+	</TableRow>
+						
+			
+		
+</TableLayout>

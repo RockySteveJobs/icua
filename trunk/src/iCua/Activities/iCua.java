@@ -21,6 +21,7 @@ import iCua.Data.Adapters.ImageAdapter;
 import iCua.Interfaces.IPod;
 import iCua.Media.LastFMClient;
 import iCua.Media.Song;
+import iCua.Media.StreamingMediaPlayer;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -56,10 +57,7 @@ public class iCua extends Activity {
 
         gv.setOnItemClickListener(l);
         //gv.setNumColumns(4);
-       LastFMClient lc = new LastFMClient("cuacua", "bocaboca");
- 
-       
-       
+
 
  //       send(password,artist,track);
         CtrlDades.scan();
@@ -92,25 +90,29 @@ public class iCua extends Activity {
     }
     
     private void goRadio(){
-    	Intent i = new Intent(this, LastRadio.class);
+    	Intent i = new Intent(this, OnAir.class);
+    	i.putExtra("type", -10);
+    //	Intent i = new Intent(this, LastRadio.class);
     	
     	startActivity(i);
     	
     }
     private void goStream(){
-    	Intent i = new Intent(this, Streaming.class);
+    	Intent i = new Intent(this, OnAirRadio.class);
+    	i.putExtra("type", -10);
+    //	Intent i = new Intent(this, LastRadio.class);
     	
     	startActivity(i);
     	
     }
     private void goPlaylists(){
-    	Intent i = new Intent(this, About.class);
-    	
+     	Intent i = new Intent(this, About.class);
     	startActivity(i);
     	
     }
     private void goConfig(){
-    	Intent i = new Intent(this, About.class);
+    	Intent i = new Intent(this, OnAir.class);
+    	i.putExtra("type", -10);
     	
     	startActivity(i);
     	
@@ -119,7 +121,7 @@ public class iCua extends Activity {
 
     
     private void goAbout(){
-    	Intent i = new Intent(this, About.class);
+     	Intent i = new Intent(this, About.class);
     	
     	startActivity(i);
     	
@@ -142,6 +144,9 @@ public class iCua extends Activity {
 		      case 3:
 		          goRadio();
 		           break;
+		      case 4 :
+		    	  goStream();
+		    	  break;
 		      default:
 		           goAbout();
 		           break;

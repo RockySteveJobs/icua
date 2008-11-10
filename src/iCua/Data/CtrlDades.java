@@ -12,8 +12,6 @@ import entagged.audioformats.AudioFileIO;
 import entagged.audioformats.exceptions.CannotReadException;
 import android.database.sqlite.*;
 import android.database.*;
-import android.os.Debug;
-import android.util.DebugUtils;
 
 
 public final class CtrlDades {
@@ -253,7 +251,7 @@ public final class CtrlDades {
 
 public  static Cursor getSongs( String artist){
 		
-		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+		SQLiteDatabase db = SQLiteDatabase.openDatabase("//sdcard//iCua//data/iCua.db3",null,0);
 		Cursor c = db.query(true, "songs", new String[] {"_id", "title", "filename", "artist"}, "artist="+artist, null, null, null, "title", null);
 		
 		
@@ -316,7 +314,7 @@ public  static Song[] getSongsByAlbum( int artist, int album){
 
 public  static Song[] getSongs( String artist, String id_song, String album){
 	
-	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+	SQLiteDatabase db = SQLiteDatabase.openDatabase("//sdcard//iCua//data/iCua.db3",null,0);
 	
 	SQLiteQueryBuilder sqb = new SQLiteQueryBuilder();
 	
@@ -372,7 +370,7 @@ public  static Song[] getSongs( String artist, String id_song, String album){
 		i++;
 		
 	}
-	
+	db.close();
 	return res;
 		
 }

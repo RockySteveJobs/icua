@@ -38,10 +38,11 @@ interface ISecondary {
     
     String getTitle();
     
+        String getArt();
     
     int getIdAlbum();
     
-       int getIdArtist();
+    int getIdArtist();
     
     int playSong();
     
@@ -49,9 +50,15 @@ interface ISecondary {
     
     int  nextSong();
     
-       int  prevSong();
+    int  prevSong();
     
     void seekSong(int pos);
+    
+    int tuneArtist(String artist);
+    
+    int tuneTag(String tag);
+    
+    int PlayStream();
     
 void SetPlaylist(String song, String artist, String album);
     

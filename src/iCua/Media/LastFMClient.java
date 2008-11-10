@@ -324,14 +324,16 @@ return str.equals("OK");
 	public  Song[] getSongs(){
 		String path = "http://ws.audioscrobbler.com/radio/xspf.php?sk="+this.key+"&dicovery=1&desktop=1";
 		download( path, "//sdcard//iCua//playlist.xml");
-		  try{
+		System.out.println("//sdcard//iCua//playlist.xml");
+		Song[] songs = null; 
+		try{
 				File file = new File("//sdcard//iCua//playlist.xml");
 				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 				DocumentBuilder db = dbf.newDocumentBuilder();
 				Document doc = db.parse(file);
 				doc.getDocumentElement().normalize();
 				//System.out.println("Root element " + doc.getDocumentElement().getAttribute("picture").toString());
-				 Song[] songs = new Song[5];
+				 songs = new Song[5];
 				 String artist,songname,album, filename, art;
 				
 				NodeList nodeLst = doc.getElementsByTagName("track");
@@ -349,7 +351,7 @@ return str.equals("OK");
 							      Element fstNmElmnt = (Element) fstNmElmntLst.item(0);
 							      NodeList fstNm = fstNmElmnt.getChildNodes();
 							      filename =((Node) fstNm.item(0)).getNodeValue();
-							
+							System.out.println(filename);
 							      fstElmnt = (Element) fstNode;
 							      fstNmElmntLst = fstElmnt.getElementsByTagName("creator");
 							      fstNmElmnt = (Element) fstNmElmntLst.item(0);
@@ -386,7 +388,7 @@ return str.equals("OK");
 				
 			  
 		  }
-		return null;
+		return songs;
 	}
 	
 	

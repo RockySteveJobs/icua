@@ -46,7 +46,7 @@ import android.widget.Toast;
  * @author devil
  *
  */
-public class OnAir extends Activity{
+public class OnAirRadio extends Activity{
 	
 	  /** The primary interface we will be calling on the service. */
     IRemoteService mService = null;
@@ -71,46 +71,15 @@ public class OnAir extends Activity{
     public void onCreate(Bundle savedInstanceState) {
 		 setTheme(R.style.Theme_notitle);
 		super.onCreate(savedInstanceState);
-        setContentView(R.layout.onair);
+        setContentView(R.layout.onairradio);
    
-        barra= (HorizontalSlider)findViewById(R.id.slider);
-        barra.setMax(100);
-        barra.setOnProgressChangeListener(lbarra);
+
  
         txt = (TextView) findViewById(R.id.txt);
         img = (ImageView) findViewById(R.id.cover);
-      //  img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/album/137.jpg"));
 
     	
-    	Bundle extras = getIntent().getExtras();
- 
-    	
 
-    	
-    	if (extras != null) {
-    		timestamp = extras.getLong("timestamp");
-    		// id_song = extras.getIntArray("id");
-    		typePlay = extras.getInt("type");
-    		switch (typePlay){
-    		
-    		case 1:
-    			_song = extras.getString("song");
-    			break;    			
-    		case 2:
-    			_album = extras.getString("album");
-    			_artist = extras.getString("artist");
-    			break;
-    		case 3:
-    			_artist = extras.getString("artist");
-    			break;
-    		case 4:
-    			_album = extras.getString("album");
-    			break;
-    		
-    		};
-    		
-
-    	}
     	
   	  bindService(new Intent("iCua.Services.IRemoteService"),
               mConnection, Context.BIND_AUTO_CREATE);
@@ -123,8 +92,7 @@ public class OnAir extends Activity{
         bNext = (ImageButton)findViewById(R.id.next);
         bNext.setOnClickListener(lnext);
         
-        bPrev =(ImageButton)findViewById(R.id.prev);
-        bPrev.setOnClickListener(lprev);
+
         
             
 
@@ -135,7 +103,7 @@ public class OnAir extends Activity{
    
            
         try {
-        	if(typePlay == -10){
+     
 
         		
         		
@@ -151,22 +119,13 @@ public class OnAir extends Activity{
         	
         			mSecondaryService.PlayStream();
         		}
-        	}else{
         	
         	
-        	if(typePlay != -1) {
-        	if (!mSecondaryService.isTimeStamp(timestamp))
-        		mSecondaryService.SetPlaylist(_song, _artist, _album);        	
-        	mSecondaryService.setTimeStamp(timestamp);
         	
-        	}
-        
         	
-        	mSecondaryService.playSong();
-        	}
             } catch (Exception ex) {
                
-                Toast.makeText(OnAir.this,
+                Toast.makeText(OnAirRadio.this,
                         "Error al Reproducir",
                         Toast.LENGTH_SHORT).show();
             }
@@ -193,7 +152,7 @@ try{
     
      }
      txt.setText(mSecondaryService.getArtist()+" - "+mSecondaryService.getTitle());
-  //   barra.setMax(mSecondaryService.getDuration());
+
      
 }catch(Exception ex11){
 	
@@ -201,45 +160,11 @@ try{
 }
     }
 	
-	private OnProgressChangeListener lbarra = new OnProgressChangeListener(){
-		public void onProgressChanged(View v, int progress) {
-			  if (mSecondaryService != null) {
-	                try {
-	                	mSecondaryService.seekSong(progress);
-	                 
-	                } catch (RemoteException ex) {
-	                   
-	                    Toast.makeText(OnAir.this,
-	                            "Error al Reproducir",
-	                            Toast.LENGTH_SHORT).show();
-	                }
-		}
-			  }
-		};
+
 		
 	
 	
-	 private OnClickListener lprev = new OnClickListener() {
-	        public void onClick(View v) {
-	            // Cancel a previous call to startService().  Note that the
-	            // service will not actually stop at this point if there are
-	            // still bound clients.
-	        	
-	            if (mSecondaryService != null) {
-	                try {
-	                	mSecondaryService.prevSong();
-	                 
-	                } catch (RemoteException ex) {
-	                   
-	                    Toast.makeText(OnAir.this,
-	                            "Error al Reproducir",
-	                            Toast.LENGTH_SHORT).show();
-	                }
-	            }
-	     	setImage();
-	        }
-	    };
-	    
+	
 	   
 	    private OnClickListener lnext = new OnClickListener() {
 	        public void onClick(View v) {
@@ -253,7 +178,7 @@ try{
 	                 
 	                } catch (RemoteException ex) {
 	                   
-	                    Toast.makeText(OnAir.this,
+	                    Toast.makeText(OnAirRadio.this,
 	                            "Error al Reproducir",
 	                            Toast.LENGTH_SHORT).show();
 	                }
@@ -290,7 +215,7 @@ try{
 	            }
 	            
 	            // As part of the sample, tell the user what happened.
-	            Toast.makeText(OnAir.this, "conectado al player",
+	            Toast.makeText(OnAirRadio.this, "conectado al player",
 	                    Toast.LENGTH_SHORT).show();
 	        }
 
@@ -302,7 +227,7 @@ try{
 	     //       mCallbackText.setText("Disconnected.");
 
 	            // As part of the sample, tell the user what happened.
-	            Toast.makeText(OnAir.this, "Desconectado del player",
+	            Toast.makeText(OnAirRadio.this, "Desconectado del player",
 	                    Toast.LENGTH_SHORT).show();
 	        }
 	    };
@@ -357,8 +282,8 @@ try{
 	        @Override public void handleMessage(Message msg) {
 	            switch (msg.what) {
 	                case BUMP_MSG:
-	                	   barra.setProgress(msg.arg1);
-	                  //  mCallbackText.setText("Received from service: " + );
+	                
+	         
 	                    break;
 	                case UPDATE_MSG:
 	                	setImage();

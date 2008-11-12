@@ -14,11 +14,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 
 
@@ -27,11 +34,11 @@ import android.widget.Toast;
  *
  */
 public class AlbumsList extends ListActivity {
-
+	Animation anim = null;
 	private int id_artista=0;
 	private String nombre = null;
 	private EfficientAdapter adp;
-    private static class EfficientAdapter extends BaseAdapter {
+    private static class EfficientAdapter extends BaseAdapter{
         private LayoutInflater mInflater;
         private Bitmap mIcon1;
         private Bitmap mIcon2;
@@ -155,18 +162,25 @@ public class AlbumsList extends ListActivity {
     		a= CtrlDades.getAlbums();
     		id_artista = -1;
     	}
-    
+    anim = AnimationUtils.loadAnimation(this, R.anim.magnify);
     	
     	
     	super.onCreate(savedInstanceState);
     	adp = new EfficientAdapter(this,a);
         setListAdapter(adp);
+       
+      
     }
+    
+    
+
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	// TODO Auto-generated method stub
-    	
+    	  v.startAnimation( anim );
+
+    
     	Album aux =(Album)adp.getItem(position);
     	
     	//Toast.makeText(this,aux.name+" "+position ,Toast.LENGTH_LONG );
@@ -181,6 +195,6 @@ public class AlbumsList extends ListActivity {
     	startActivity(i);
     	
     }
-
+    
 
 }

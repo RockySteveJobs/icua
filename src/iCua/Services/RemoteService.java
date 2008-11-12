@@ -45,11 +45,9 @@ import iCua.Activities.R.drawable;
 import iCua.Activities.R.string;
 import iCua.Data.CtrlDades;
 import iCua.Data.LastFM;
-import iCua.Media.IMP;
 import iCua.Media.LastFMClient;
 import iCua.Media.MediaPlayeriCua;
 import iCua.Media.Song;
-import iCua.Media.StreamingMediaPlayer;
 
 
 
@@ -70,15 +68,13 @@ public class RemoteService extends Service implements OnCompletionListener {
      * service.  Note that this is package scoped (instead of private) so
      * that it can be accessed more efficiently from inner classes.
      */
-//	MediaPlayeriCua mp = null;
-	StreamingMediaPlayer smp = null;
-	IMP mp = null;
+	MediaPlayeriCua mp = null;
 	 LastFMClient lc = null;
 	boolean isPlaying ;
 	 boolean nuSong =false;
 	final RemoteCallbackList<IRemoteServiceCallback> mCallbacks
             = new RemoteCallbackList<IRemoteServiceCallback>();
-    long timestamp = -11;
+    long timestamp = 0;
     int mValue = 0;
     NotificationManager mNM;
     
@@ -188,6 +184,31 @@ public class RemoteService extends Service implements OnCompletionListener {
                 float aFloat, double aDouble, String aString) {
         }
         @Override
+        public String getArt() throws RemoteException {
+        	// TODO Auto-generated method stub
+        	return mp.getSong().art;
+        }
+        
+        @Override
+        public int PlayStream() throws RemoteException {
+        	// TODO Auto-generated method stub
+        	return 0;
+        }
+        
+        @Override
+        public int tuneArtist(String artist) throws RemoteException {
+        	// TODO Auto-generated method stub
+        	return 0;
+        }
+        
+        @Override
+        public int tuneTag(String tag) throws RemoteException {
+        	// TODO Auto-generated method stub
+        	return 0;
+        }
+        
+        
+        @Override
         public int playSong() throws RemoteException {
            if (!mp.isPlaying())mp.playSong();
            updateNotification();
@@ -259,56 +280,11 @@ public class RemoteService extends Service implements OnCompletionListener {
      
     	mp.seekTo(pos);
     }
-    @Override
-    public String getArt() throws RemoteException {
-    	// TODO Auto-generated method stub
-    	return mp.getSong().art;
-    }
-@Override
-    public int tuneArtist(String artist) throws RemoteException {
-    	// TODO Auto-generated method stub
-	
-		lc.tuneArtist(artist);
-	
-    	return 0;
-    	
-    	
-    }
-
-
-@Override
-public int tuneTag(String tag) throws RemoteException {
-	// TODO Auto-generated method stub
-	
-	lc.tuneTag(tag);
-	return 0;
-	
-	
-}
-   @Override
-    public int PlayStream() throws RemoteException {
-    	// TODO Auto-generated method stub
-	   try{
-		   System.out.println(lc != null);
-	   mp= new StreamingMediaPlayer();
-	   
-	   mp.setOnCompletionListener(RemoteService.this);
-	
-	   Song[] sg = lc.getSongs();
-	   System.out.println(sg.length+" CANCIONES");
-	   for (int i=sg.length-1; i>=0;i--) 
-		   mp.addSong(sg[i]);
-	 
-	   mp.playSong();
-	  }catch(Exception exc){
-		  
-	  }
-    	return 0;
-    } 
+    
 @Override
 public void SetPlaylist(String song, String artist, String album)
 		throws RemoteException {
-	if (mp.isPlaying())	mp.stopSong();
+	if (mp.isPlaying())	mp.stop();
 	mp.reset();
 	mp.setPlaylist(artist, song, album);
 	mp.playSong();

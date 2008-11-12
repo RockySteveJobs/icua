@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\iCua\\nuworkspace\\nuiCua\\src\\iCua\\Services\\ISecondary.aidl
+ * Original file: C:\\svn4\\src\\iCua\\Services\\ISecondary.aidl
  */
 package iCua.Services;
 import java.lang.String;

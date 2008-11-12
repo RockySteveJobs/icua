@@ -134,7 +134,7 @@ public class LastFMClient {
 	}
 
 	public void playingNow(String artist, String title, String duration, String album){
-		 
+		System.out.println("PLAYNOW");
 		try {
 	             DefaultHttpClient client = new DefaultHttpClient();
 	             ArrayList<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -145,16 +145,18 @@ public class LastFMClient {
 	            pairs.add(      new BasicNameValuePair("l", duration) );
 	            pairs.add(      new BasicNameValuePair("n", "") );
 	            pairs.add(      new BasicNameValuePair("m", "") );
-	            
+	    		System.out.println("song="+" "+artist+" "+title+" "+album+" "+duration);
 	            
 	             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(pairs);
 	            		 
 	             HttpPost method = new HttpPost(new URI(this.serverNP));
-	             method.setHeader("user-agent", "iCua webBrowser");
+	             method.setHeader("user-agent", "iCua");
 	             method.setEntity(entity);
 
 	             HttpResponse res = client.execute(method);
 	    	
+	 
+	             
 	          }catch(Exception exd1 ){
 	        	  System.out.println(exd1.getMessage());
 	        	  
@@ -163,6 +165,8 @@ public class LastFMClient {
 	}
 	public void scroble(String artist, String title,String duration, String album){
 		try {
+			System.out.println("song="+" "+artist+" "+title+" "+album+" "+duration);
+	        
             DefaultHttpClient client = new DefaultHttpClient();
             ArrayList<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
            pairs.add( new BasicNameValuePair("s", this.skey));
@@ -185,7 +189,7 @@ public class LastFMClient {
 
             HttpResponse res = client.execute(method);
    	
-            System.out.println(res.toString());
+            System.out.println("mandadoooo"+res.toString());
          }catch(Exception exd1 ){
        	  System.out.println(exd1.getMessage());
        	  

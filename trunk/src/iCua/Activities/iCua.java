@@ -49,13 +49,16 @@ public class iCua extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        ImageView portada = (ImageView) findViewById(R.id.ImageView01);
-        portada.setImageResource(R.drawable.logo);
-   
+      //  ImageView portada = (ImageView) findViewById(R.id.ImageView01);
+  
         GridView gv = (GridView) findViewById(R.id.GridView01);
         gv.setAdapter(new ImageAdapter(this)); 
 
         gv.setOnItemClickListener(l);
+        
+        LastFMClient lc = new LastFMClient("cuacua", "bocaboca");
+        lc.playingNow("Muse", "New Born", 314+"", "Revelations");
+        
         //gv.setNumColumns(4);
 
 
@@ -98,7 +101,7 @@ public class iCua extends Activity {
     	
     }
     private void goStream(){
-    	Intent i = new Intent(this, OnAirRadio.class);
+    	Intent i = new Intent(this, About.class);
     	i.putExtra("type", -10);
     //	Intent i = new Intent(this, LastRadio.class);
     	

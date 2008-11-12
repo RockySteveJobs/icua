@@ -38,7 +38,7 @@ interface ISecondary {
     
     String getTitle();
     
-        String getArt();
+String getArt();
     
     int getIdAlbum();
     

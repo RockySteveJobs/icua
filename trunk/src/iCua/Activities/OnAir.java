@@ -14,7 +14,6 @@ import iCua.Components.HorizontalSlider;
 import iCua.Components.HorizontalSlider.OnProgressChangeListener;
 import iCua.Data.CtrlDades;
 import iCua.Data.LastFM;
-import iCua.Media.LastFMClient;
 import iCua.Media.MediaPlayeriCua;
 import iCua.Media.Song;
 import iCua.Services.IRemoteService;
@@ -65,21 +64,21 @@ public class OnAir extends Activity{
 	private String _album = null;
 	private String _song = null;
 	private long timestamp=-1;	
-    LastFMClient lc = new LastFMClient("cuacua", "bocaboca");
+
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		 setTheme(R.style.Theme_notitle);
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.onair);
-   
+        
         barra= (HorizontalSlider)findViewById(R.id.slider);
         barra.setMax(100);
         barra.setOnProgressChangeListener(lbarra);
  
         txt = (TextView) findViewById(R.id.txt);
         img = (ImageView) findViewById(R.id.cover);
-      //  img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/album/137.jpg"));
+        img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/album/137.jpg"));
 
     	
     	Bundle extras = getIntent().getExtras();
@@ -135,25 +134,6 @@ public class OnAir extends Activity{
    
            
         try {
-        	if(typePlay == -10){
-
-        		
-        		
-        		if (!mSecondaryService.isTimeStamp(timestamp)){
-         	
-        	       //Song[] sgs = lc.getSongs();
-        	       
-        	       
-
-        	//        System.out.println(sgs.length);	
-        			
-        			mSecondaryService.setTimeStamp(timestamp);
-        	
-        			mSecondaryService.PlayStream();
-        		}
-        	}else{
-        	
-        	
         	if(typePlay != -1) {
         	if (!mSecondaryService.isTimeStamp(timestamp))
         		mSecondaryService.SetPlaylist(_song, _artist, _album);        	
@@ -163,8 +143,8 @@ public class OnAir extends Activity{
         
         	
         	mSecondaryService.playSong();
-        	}
-            } catch (Exception ex) {
+             
+            } catch (RemoteException ex) {
                
                 Toast.makeText(OnAir.this,
                         "Error al Reproducir",
@@ -181,19 +161,18 @@ try{
 	
 //	txt.setText(saux.artist +" - " +saux.title );
 	String art = mSecondaryService.getArt();
-	
 	File faux = new File(art);
      if (faux.exists())
      {
     	 img.setImageBitmap(BitmapFactory.decodeFile(art));
     	  
      }else{
-
-    		 img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/artist/nofoto.jpg"));
-    
+    	
+    		 img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/artist/no_artist.gif"));
+    	 
      }
      txt.setText(mSecondaryService.getArtist()+" - "+mSecondaryService.getTitle());
-  //   barra.setMax(mSecondaryService.getDuration());
+     barra.setMax(mSecondaryService.getDuration());
      
 }catch(Exception ex11){
 	

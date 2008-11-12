@@ -12,26 +12,33 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
+import iCua.Activities.SongsList;
 import iCua.Data.CtrlDades;
-
+import iCua.Data.LastFM;
+import iCua.Media.Eplayer;
 import iCua.Media.Filter;
 import iCua.Media.Fnone;
 import iCua.Media.Playlist;
 import iCua.Media.Song;
 
-
+import com.google.android.maps.MyLocationOverlay;
 
 import android.media.MediaPlayer;
 import android.util.Log;
-
+import android.widget.BaseAdapter;
 
 /**
  * @author devil
  *
  */
 
-public class MediaPlayeriCua extends MediaPlayer implements IMP {
+public class MediaPlayeriCua extends MediaPlayer {
 	
 	private Playlist _playlist= null;
 	private Filter strategy =  null;
@@ -86,10 +93,6 @@ public class MediaPlayeriCua extends MediaPlayer implements IMP {
 		}
 		
 	}	
-	
-	public void addSong(Song s){
-		
-	}
 	
 	public void  nextSong(){
 		try{
@@ -178,7 +181,7 @@ public class MediaPlayeriCua extends MediaPlayer implements IMP {
 			
 			
 	
-		/* Streaming stuff************************/
+		/* Streaming stuff*/
 		
 	
 		    

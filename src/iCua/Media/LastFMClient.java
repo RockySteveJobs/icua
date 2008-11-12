@@ -337,11 +337,11 @@ return str.equals("OK");
 				Document doc = db.parse(file);
 				doc.getDocumentElement().normalize();
 				//System.out.println("Root element " + doc.getDocumentElement().getAttribute("picture").toString());
-				 songs = new Song[5];
+				
 				 String artist,songname,album, filename, art;
 				
 				NodeList nodeLst = doc.getElementsByTagName("track");
-				 
+				 songs = new Song[nodeLst.getLength()];
 				  for (int s = 0; s < nodeLst.getLength(); s++) 
 				  {
 

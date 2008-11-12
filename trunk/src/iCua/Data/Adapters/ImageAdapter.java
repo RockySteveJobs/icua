@@ -13,7 +13,7 @@ import android.widget.ImageView;
 public class ImageAdapter extends BaseAdapter{
 
    private Context mContext;
-   private Integer[] lImagenes = {R.drawable.i1,R.drawable.i2,R.drawable.i3,R.drawable.i4,R.drawable.i5,R.drawable.i6,R.drawable.i7};
+   private Integer[] lImagenes = {R.drawable.i1,R.drawable.i2,R.drawable.i3,R.drawable.i4,R.drawable.i5,R.drawable.i9,R.drawable.i6,R.drawable.i8};
 
    public ImageAdapter(Context context){
       mContext = context;

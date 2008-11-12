@@ -56,8 +56,7 @@ public class iCua extends Activity {
 
         gv.setOnItemClickListener(l);
         
-        LastFMClient lc = new LastFMClient("cuacua", "bocaboca");
-        lc.playingNow("Muse", "New Born", 314+"", "Revelations");
+
         
         //gv.setNumColumns(4);
 
@@ -93,7 +92,7 @@ public class iCua extends Activity {
     }
     
     private void goRadio(){
-    	Intent i = new Intent(this, OnAir.class);
+    	Intent i = new Intent(this, OnAirRadio.class);
     	i.putExtra("type", -10);
     //	Intent i = new Intent(this, LastRadio.class);
     	
@@ -109,7 +108,7 @@ public class iCua extends Activity {
     	
     }
     private void goPlaylists(){
-     	Intent i = new Intent(this, About.class);
+     	Intent i = new Intent(this, Playlists.class);
     	startActivity(i);
     	
     }
@@ -150,6 +149,16 @@ public class iCua extends Activity {
 		      case 4 :
 		    	  goStream();
 		    	  break;
+		      case 5:
+		          goPlaylists();
+		           break;
+		      case 6 :
+		    	  goStream();
+		    	  break;
+		      case 7:
+		          goRadio();
+		           break;
+
 		      default:
 		           goAbout();
 		           break;

@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\iCua\\nuworkspace\\nuiCua\\src\\iCua\\Interfaces\\IPod.aidl
+ * Original file: C:\\svn4\\src\\iCua\\Interfaces\\IPod.aidl
  */
 package iCua.Interfaces;
 import java.lang.String;

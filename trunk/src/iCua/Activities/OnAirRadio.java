@@ -17,6 +17,7 @@ import iCua.Data.LastFM;
 import iCua.Media.LastFMClient;
 import iCua.Media.MediaPlayeriCua;
 import iCua.Media.Song;
+import iCua.Media.StreamingMediaPlayer;
 import iCua.Services.IRemoteService;
 import iCua.Services.IRemoteServiceCallback;
 import iCua.Services.ISecondary;
@@ -48,10 +49,7 @@ import android.widget.Toast;
  */
 public class OnAirRadio extends Activity{
 	
-	  /** The primary interface we will be calling on the service. */
-    IRemoteService mService = null;
-    /** Another interface we use on the service. */
-    ISecondary mSecondaryService = null;
+	private StreamingMediaPlayer mp ;
     
     
 	private boolean mIsRegistred = false;
@@ -65,15 +63,15 @@ public class OnAirRadio extends Activity{
 	private String _album = null;
 	private String _song = null;
 	private long timestamp=-1;	
-    LastFMClient lc = new LastFMClient("cuacua", "bocaboca");
+    LastFMClient lc ;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		 setTheme(R.style.Theme_notitle);
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.onairradio);
-   
-
+        mp = new StreamingMediaPlayer(this);
+lc = new LastFMClient("cuacua", "bocaboca");
  
         txt = (TextView) findViewById(R.id.txt);
         img = (ImageView) findViewById(R.id.cover);
@@ -81,19 +79,15 @@ public class OnAirRadio extends Activity{
     	
 
     	
-  	  bindService(new Intent("iCua.Services.IRemoteService"),
-              mConnection, Context.BIND_AUTO_CREATE);
-      bindService(new Intent("iCua.Services.ISecondary"),
-              mSecondaryConnection, Context.BIND_AUTO_CREATE);
-      mIsBound = true;
+
 
   
 
         bNext = (ImageButton)findViewById(R.id.next);
         bNext.setOnClickListener(lnext);
         
-
         
+        init();
             
 
     }
@@ -105,20 +99,11 @@ public class OnAirRadio extends Activity{
         try {
      
 
+        		Song[] tmp = lc.getSongs();
+        		for (int i = tmp.length-1; i>=0;i--) mp.addSong(tmp[i]);
         		
+        		mp.playSong();
         		
-        		if (!mSecondaryService.isTimeStamp(timestamp)){
-         	
-        	       //Song[] sgs = lc.getSongs();
-        	       
-        	       
-
-        	//        System.out.println(sgs.length);	
-        			
-        			mSecondaryService.setTimeStamp(timestamp);
-        	
-        			mSecondaryService.PlayStream();
-        		}
         	
         	
         	
@@ -131,7 +116,7 @@ public class OnAirRadio extends Activity{
             }
 	}
    
-	private void setImage(){
+	public  void setImage(){
     	
     	//Song saux= mp.getSong();
     	
@@ -139,7 +124,7 @@ public class OnAirRadio extends Activity{
 try{
 	
 //	txt.setText(saux.artist +" - " +saux.title );
-	String art = mSecondaryService.getArt();
+	String art = mp.getSong().art;
 	
 	File faux = new File(art);
      if (faux.exists())
@@ -151,7 +136,7 @@ try{
     		 img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/artist/nofoto.jpg"));
     
      }
-     txt.setText(mSecondaryService.getArtist()+" - "+mSecondaryService.getTitle());
+     txt.setText(mp.getSong().artist+" - "+mp.getSong().title);
 
      
 }catch(Exception ex11){
@@ -172,110 +157,18 @@ try{
 	            // service will not actually stop at this point if there are
 	            // still bound clients.
 	        	
-	            if (mSecondaryService != null) {
-	                try {
-	                	mSecondaryService.nextSong();
+	         
+	                	mp.skipSong();
 	                 
-	                } catch (RemoteException ex) {
-	                   
-	                    Toast.makeText(OnAirRadio.this,
-	                            "Error al Reproducir",
-	                            Toast.LENGTH_SHORT).show();
-	                }
-	            }
-	     	setImage();
+	             
+	                	setImage();
 	        }
 	    };
 	   
 	    /* Conexions al servei*/
 	  
 	    
-	    private ServiceConnection mConnection = new ServiceConnection() {
-	        public void onServiceConnected(ComponentName className,
-	                IBinder service) {
-	            // This is called when the connection with the service has been
-	            // established, giving us the service object we can use to
-	            // interact with the service.  We are communicating with our
-	            // service through an IDL interface, so get a client-side
-	            // representation of that from the raw service object.
-	            mService = IRemoteService.Stub.asInterface(service);
-	           // mKillButton.setEnabled(true);
-	            //mCallbackText.setText("Attached.");
-
-	            // We want to monitor the service for as long as we are
-	            // connected to it.
-	            try {
-	                mService.registerCallback(mCallback);
-	               
-	            } catch (RemoteException e) {
-	                // In this case the service has crashed before we could even
-	                // do anything with it; we can count on soon being
-	                // disconnected (and then reconnected if it can be restarted)
-	                // so there is no need to do anything here.
-	            }
-	            
-	            // As part of the sample, tell the user what happened.
-	            Toast.makeText(OnAirRadio.this, "conectado al player",
-	                    Toast.LENGTH_SHORT).show();
-	        }
-
-	        public void onServiceDisconnected(ComponentName className) {
-	            // This is called when the connection with the service has been
-	            // unexpectedly disconnected -- that is, its process crashed.
-	            mService = null;
-	          //  mKillButton.setEnabled(false);
-	     //       mCallbackText.setText("Disconnected.");
-
-	            // As part of the sample, tell the user what happened.
-	            Toast.makeText(OnAirRadio.this, "Desconectado del player",
-	                    Toast.LENGTH_SHORT).show();
-	        }
-	    };
-
-	    /**
-	     * Class for interacting with the secondary interface of the service.
-	     */
-	    private ServiceConnection mSecondaryConnection = new ServiceConnection() {
-	        public void onServiceConnected(ComponentName className,
-	                IBinder service) {
-	            // Connecting to a secondary interface is the same as any
-	            // other interface.
-	            mSecondaryService = ISecondary.Stub.asInterface(service);
-	            init();	            
-	            setImage();
-	                      
-	            //   mKillButton.setEnabled(true);
-	        }
-
-	        public void onServiceDisconnected(ComponentName className) {
-	            mSecondaryService = null;
-	       //     mKillButton.setEnabled(false);
-	        }
-	    };
-	    
-	    
-	    private IRemoteServiceCallback mCallback = new IRemoteServiceCallback.Stub() {
-	        /**
-	         * This is called by the remote service regularly to tell us about
-	         * new values.  Note that IPC calls are dispatched through a thread
-	         * pool running in each process, so the code executing here will
-	         * NOT be running in our main thread like most other things -- so,
-	         * to update the UI, we need to use a Handler to hop over there.
-	         */
-	        public void valueChanged(int value) {
-	            mHandler.sendMessage(mHandler.obtainMessage(BUMP_MSG, value, 0));
-	         
-	           
-	        }
-	        
-	        @Override
-	        public void songChanged() {
-	        	// TODO Auto-generated method stub
-	        	   mHandler.sendMessage(mHandler.obtainMessage(UPDATE_MSG, 0, 0));
-	  	         
-	        }
-	    };
-	    
+	   
 	    private static final int BUMP_MSG = 1;
 	    private static final int UPDATE_MSG = 2;
 	    private Handler mHandler = new Handler() {

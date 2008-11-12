@@ -117,17 +117,23 @@ public class OnAir extends Activity{
               mSecondaryConnection, Context.BIND_AUTO_CREATE);
       mIsBound = true;
 
-  
+      bPause = (ImageButton)findViewById(R.id.stop);
+      bPause.setOnClickListener(lstop);
 
         bNext = (ImageButton)findViewById(R.id.next);
         bNext.setOnClickListener(lnext);
         
         bPrev =(ImageButton)findViewById(R.id.prev);
         bPrev.setOnClickListener(lprev);
-        
+        bPlay =(ImageButton)findViewById(R.id.pause);
+        bPlay.setOnClickListener(lpause);
             
 
     }
+	
+	
+	
+	
 	public void init() {
     	// TODO Auto-generated method stub
     	
@@ -195,7 +201,36 @@ try{
 		}
 			  }
 		};
-		
+		 private OnClickListener lpause = new OnClickListener() {
+		        public void onClick(View v) {
+		        	Intent i = new Intent(OnAir.this, iCua.class);
+		        	
+		        	startActivity(i);
+		        }
+		        	
+		          
+		    };	
+	
+		    private OnClickListener lstop = new OnClickListener() {
+		        public void onClick(View v) {
+		            // Cancel a previous call to startService().  Note that the
+		            // service will not actually stop at this point if there are
+		            // still bound clients.
+		        	
+		            if (mSecondaryService != null) {
+		                try {
+		                	mSecondaryService.stopSong();
+		                 
+		                } catch (RemoteException ex) {
+		                   
+		                    Toast.makeText(OnAir.this,
+		                            "Error al Reproducir",
+		                            Toast.LENGTH_SHORT).show();
+		                }
+		            }
+		     	setImage();
+		        }
+		    };	
 	
 	
 	 private OnClickListener lprev = new OnClickListener() {

@@ -13,7 +13,7 @@ public class Playlist {
 	
 	public void nextSong(){
 		
-		if (pos == list.length+1){			
+		if (pos == list.length-1){			
 			pos = 0;
 		}else pos++;
 			
@@ -22,7 +22,7 @@ public class Playlist {
 	public void prevSong(){
 		
 		if (pos == 0){			
-			pos = list.length+1;
+			pos = list.length-1;
 		}else pos--;
 			
 	}

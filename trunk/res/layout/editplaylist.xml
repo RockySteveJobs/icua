@@ -20,7 +20,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <ListView
+    <Button android:id="@+id/Button01" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button><Button android:id="@+id/Button02" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button><TextView android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enter playlist's name here"></TextView><ListView
         android:id="@android:id/list"
         android:persistentDrawingCache="animation|scrolling"
         android:layoutAnimation="@anim/layout_bottom_to_top_slide" android:layout_height="fill_parent" android:layout_width="fill_parent">

@@ -375,6 +375,13 @@ public  static Song[] getSongs( String artist, String id_song, String album){
 		
 }
 
+public static int createPlaylist(){
+	
+	
+	
+	return 0;
+}
+
 public  static Album[] getAlbums( ){
 	
 	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);

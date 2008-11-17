@@ -18,7 +18,6 @@ import iCua.Components.HorizontalSlider;
 import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
 import iCua.Data.Adapters.ImageAdapter;
-import iCua.Interfaces.IPod;
 import iCua.Media.LastFMClient;
 import iCua.Media.Song;
 import iCua.Media.StreamingMediaPlayer;

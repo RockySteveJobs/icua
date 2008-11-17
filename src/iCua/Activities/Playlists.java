@@ -72,8 +72,7 @@ lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
     	startActivity(i);
     	
     }
-    
-   
+       
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
     		long arg3) {

@@ -1,6 +1,6 @@
 package iCua.Media;
 
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 
 public class FbyArtist extends Filter {
 
@@ -13,7 +13,7 @@ public class FbyArtist extends Filter {
 	 
 	@Override
 	public Playlist getPlaylist() {
-		Song[] aux = CtrlDades.getSongs(id_a,null,null);
+		Song[] aux = CtrlData.getSongs(id_a,null,null);
 		Playlist p =  new Playlist(aux);
 		// TODO Auto-generated method stub
 		return p;

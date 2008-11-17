@@ -5,7 +5,7 @@ package iCua.Activities;
 
 
 
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Media.Artist;
 import android.app.ListActivity;
 import android.content.Context;
@@ -46,7 +46,7 @@ public class ArtistsList extends ListActivity implements  ListView.OnScrollListe
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 
-	       Artist[] a = CtrlDades.getArtists();
+	       Artist[] a = CtrlData.getArtists();
 	       
 	       mStrings = new String[a.length];
 	       mIds = new int[a.length];

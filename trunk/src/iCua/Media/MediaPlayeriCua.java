@@ -19,7 +19,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import iCua.Activities.SongsList;
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
 import iCua.Media.Eplayer;
 import iCua.Media.Filter;
@@ -63,7 +63,7 @@ public class MediaPlayeriCua extends MediaPlayer {
 	}
 	
 	public void setPlaylist (String artist, String song, String album){
-		Song[] tmp= CtrlDades.getSongs(artist, song, album);
+		Song[] tmp= CtrlData.getSongs(artist, song, album);
 		_playlist = new Playlist(tmp);
 		
 		

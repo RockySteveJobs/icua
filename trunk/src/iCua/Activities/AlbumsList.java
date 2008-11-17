@@ -3,7 +3,7 @@
  */
 package iCua.Activities;
 
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Media.Album;
 import android.app.ListActivity;
 import android.content.Context;
@@ -157,9 +157,9 @@ public class AlbumsList extends ListActivity {
     	if (extras != null) {
     		 nombre = extras.getString("artist");
     		 id_artista = extras.getInt("id");
-    		 a= CtrlDades.getAlbums(id_artista);
+    		 a= CtrlData.getAlbums(id_artista);
     	}else{    		
-    		a= CtrlDades.getAlbums();
+    		a= CtrlData.getAlbums();
     		id_artista = -1;
     	}
     anim = AnimationUtils.loadAnimation(this, R.anim.magnify);

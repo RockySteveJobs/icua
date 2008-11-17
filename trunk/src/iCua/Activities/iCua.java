@@ -15,7 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import iCua.Components.HorizontalSlider;
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
 import iCua.Data.Adapters.ImageAdapter;
 import iCua.Interfaces.IPod;
@@ -62,7 +62,7 @@ public class iCua extends Activity {
 
 
  //       send(password,artist,track);
-        CtrlDades.scan();
+        CtrlData.scan();
 
         startService(new Intent("iCua.Services.REMOTE_SERVICE"));
   

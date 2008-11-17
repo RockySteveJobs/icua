@@ -10,11 +10,12 @@ import java.io.FilenameFilter;
 import entagged.audioformats.AudioFile;
 import entagged.audioformats.AudioFileIO;
 import entagged.audioformats.exceptions.CannotReadException;
+import android.content.ContentValues;
 import android.database.sqlite.*;
 import android.database.*;
 
 
-public final class CtrlDades {
+public final class CtrlData {
 	
 	public static void scan(){
 		/*
@@ -165,7 +166,7 @@ public final class CtrlDades {
 			int res = c.getInt(0);
 			db.close();
 			
-			
+	
 			
 			return res;
 			
@@ -195,7 +196,7 @@ public final class CtrlDades {
 			sb.append(")");			
 			db.execSQL(sb.toString());
 			
-			
+			db.close();
 	}
 	
 	public static Cursor listArtists(){
@@ -203,7 +204,7 @@ public final class CtrlDades {
 		SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
 	
 		Cursor c = db.query(true,"artists",new String[] {"_id", "name", "full_name","photo"},null,null,null,null,"name",null);
-
+		db.close();
 		return c;
 		
 	}
@@ -222,7 +223,7 @@ public final class CtrlDades {
 			i++;
 			
 		}
-		
+		db.close();
 		return res;
 		
 	}
@@ -239,7 +240,7 @@ public final class CtrlDades {
 			i++;
 			
 		}
-		
+		db.close();
 		return res;
 		
 	}
@@ -254,7 +255,7 @@ public  static Cursor getSongs( String artist){
 		SQLiteDatabase db = SQLiteDatabase.openDatabase("//sdcard//iCua//data/iCua.db3",null,0);
 		Cursor c = db.query(true, "songs", new String[] {"_id", "title", "filename", "artist"}, "artist="+artist, null, null, null, "title", null);
 		
-		
+		db.close();
 		return c;
 			
 	}
@@ -376,17 +377,73 @@ public  static Song[] getSongs( String artist, String id_song, String album){
 }
 
 public static int createPlaylist(){
+	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+
+	ContentValues cv =  new ContentValues();
+	cv.put("name", "newPlaylist");
+	int res = (int)db.insert("playlists", "null", cv);
 	
-	
-	
-	return 0;
+	return res;
 }
+
+public static void updatePlaylist(int idplaylist, String name){
+	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+
+	ContentValues cv =  new ContentValues();
+	cv.put("name", name);
+	
+	db.update("playlists", cv, "_id=",new String[] {idplaylist+""});
+	
+	db.close();
+	
+}
+
+public static int delSongPlaylist(int playlist, int song){
+	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+
+
+
+	int r=  db.delete("plsongs", "song=? and playlist=?",new String[] {song+"", playlist+""});
+db.close();
+return r;
+}
+
+public static int addSongPlaylist(int playlist, int song){
+	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+
+	ContentValues cv =  new ContentValues();
+	cv.put("song", song);
+	cv.put("playlist", playlist);
+	int res = (int)db.insert("plsongs", "null", cv);
+	db.close();
+	return res;
+}
+
+public static ContentValues[] getPlaylistsNames(){
+	
+	
+	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+
+	Cursor c = db.query(true, "playlists", new String[] {"_id", "name",},null, null, null, null, null, null); 
+	
+	ContentValues[] cv = new ContentValues[c.getCount()];
+	int i= 0;
+	while(c.moveToNext()){
+		cv[i]= new ContentValues();
+		cv[i].put("id",c.getInt(0) );
+		cv[i].put("name", c.getString(1));
+			i++;		
+	}
+	db.close();
+	
+	return cv;
+}
+
 
 public  static Album[] getAlbums( ){
 	
 	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
-	StringBuilder sb = new StringBuilder();
-	
+
 
 	Cursor c = db.query(true, "albums", new String[] {"_id", "title", "photo","artist"},null, null, null, null, null, null); 
 	
@@ -399,7 +456,7 @@ public  static Album[] getAlbums( ){
 		i++;
 		
 	}
-	
+	db.close();
 	return res;
 	
 }
@@ -422,7 +479,7 @@ public  static Album[] getAlbums(int id_artist ){
 		i++;
 		
 	}
-	
+	db.close();
 	return res;
 	
 }

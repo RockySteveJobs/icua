@@ -1,6 +1,6 @@
 package iCua.Activities;
 
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Media.Song;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -23,6 +23,7 @@ public class AddContent extends Activity implements OnItemClickListener{
 	private   ListView     lv = null;
 	private Song[] todas = null;
 	private boolean[] sel  ;
+	private int id_pl=-1;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,12 @@ public class AddContent extends Activity implements OnItemClickListener{
           
           lv =(ListView) findViewById(android.R.id.list);
      
-          todas = CtrlDades.getSongs(null, null,null);
+          todas = CtrlData.getSongs(null, null,null);
           sel = new boolean[todas.length];
           this.SONGS  = new String[todas.length];
           
           
+          id_pl= CtrlData.createPlaylist();
           
           for (int i = 0; i<todas.length; i++){
         	 this.SONGS[i]= todas[i].artist+" - "+ todas[i].title;
@@ -63,7 +65,11 @@ public class AddContent extends Activity implements OnItemClickListener{
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
     	// TODO Auto-generated method stub
-    sel[arg2]= !  sel[arg2];
+    	  sel[arg2]= !  sel[arg2];
+    
+    if (  sel[arg2])CtrlData.addSongPlaylist(id_pl, todas[arg2].id);
+    else CtrlData.delSongPlaylist(id_pl, todas[arg2].id);
+    
     	System.out.println("neeeeeeeem"+ todas[arg2].title + " ===> "+ sel[arg2]);
     }
     

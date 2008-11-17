@@ -12,7 +12,7 @@ import java.io.File;
 
 import iCua.Components.HorizontalSlider;
 import iCua.Components.HorizontalSlider.OnProgressChangeListener;
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
 import iCua.Media.MediaPlayeriCua;
 import iCua.Media.Song;

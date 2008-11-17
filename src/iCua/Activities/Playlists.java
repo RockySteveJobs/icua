@@ -2,10 +2,11 @@ package iCua.Activities;
 
 import java.util.ArrayList;
 
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Data.Adapters.SongAdapter;
 import iCua.Media.Song;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -22,7 +23,7 @@ AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener  {
 
 private Animation anim= null;
 private View cache = null;
-
+private int[] _pl= null;
 private ListView lv =null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,18 @@ private ListView lv =null;
         lv =(ListView) findViewById(android.R.id.list);
         
     ArrayList<String> playlists = new ArrayList<String>();
+    ContentValues[] vc = CtrlData.getPlaylistsNames();
+    _pl= new int[vc.length+1];
+    playlists.add(" -> Create Playlist <-");
+    for(int i = 0 ;i<vc.length;i++)
+    {
+        playlists.add(vc[i].getAsString("name"));
+        _pl[i+1]=vc[i].getAsInteger("id");
     	
-    	playlists.add(" -> Create Playlist <-");
-    	playlists.add("Most Played");
-    	playlists.add("Devil Songs");
-    	playlists.add("Electro Songs");
+    }  
+    
+    playlists.add("Most Played");
+
  
 
    

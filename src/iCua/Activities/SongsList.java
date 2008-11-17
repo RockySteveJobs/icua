@@ -5,7 +5,7 @@ package iCua.Activities;
 
 
 
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Data.Adapters.SongAdapter;
 import iCua.Media.Song;
 
@@ -56,7 +56,7 @@ private ListView lv =null;
     		 
     	}
     
-    	Song[] a= CtrlDades.getSongs(id_artista, null,  id_album +"");
+    	Song[] a= CtrlData.getSongs(id_artista, null,  id_album +"");
     
         // Use an existing ListAdapter that will map an array
         // of strings to TextViews

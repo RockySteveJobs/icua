@@ -43,7 +43,7 @@ import iCua.Activities.R;
 
 import iCua.Activities.R.drawable;
 import iCua.Activities.R.string;
-import iCua.Data.CtrlDades;
+import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
 import iCua.Media.LastFMClient;
 import iCua.Media.MediaPlayeriCua;

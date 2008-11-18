@@ -45,18 +45,20 @@ public class AlbumsList extends ListActivity {
         private String[] DATA = null;
         private int[] mIds = null;
         private int[] aIds = null;
+        boolean _same= false;
         
-        public EfficientAdapter(Context context, Album[] a) {
-          
+        public EfficientAdapter(Context context, Album[] a, boolean b) {
+        	this._same= b;
         	DATA = new String[a.length];
         	mIds = new int[a.length];
         	aIds = new int[a.length];
+        
         	for (int i =0; i< a.length; i++){
         		
         		 DATA[i]= a[i].name;
     	    	   mIds[i]= a[i].id;
     	    	   aIds[i]= a[i].artist;
-        		
+        	
         	}
         	
         	// Cache the LayoutInflate to avoid asking for a new one each time.
@@ -74,6 +76,7 @@ public class AlbumsList extends ListActivity {
          * @see android.widget.ListAdapter#getCount()
          */
         public int getCount() {
+          	if (this._same)return DATA.length +1;
             return DATA.length;
         }
 
@@ -86,6 +89,7 @@ public class AlbumsList extends ListActivity {
          * @see android.widget.ListAdapter#getItem(int)
          */
         public Object getItem(int position) {
+          	if (this._same)return  null;
             return (new Album(mIds[position], DATA[position], aIds[position]));
         }
 
@@ -95,6 +99,8 @@ public class AlbumsList extends ListActivity {
          * @see android.widget.ListAdapter#getItemId(int)
          */
         public long getItemId(int position) {
+        	if (this._same)return  -1;
+        	
             return position;
         }
 
@@ -129,14 +135,32 @@ public class AlbumsList extends ListActivity {
             }
 
             // Bind the data efficiently with the holder.
-            holder.text.setText(DATA[position]);
-            Bitmap b = BitmapFactory.decodeFile("/sdcard/iCua/art/album/"+mIds[position]+".jpg");
-            if (b == null){
-            	 b = BitmapFactory.decodeFile("/sdcard/iCua/art/artist/"+aIds[position]+".jpg");
+
+            Bitmap b ;
+            
+            if( (position==0) && this._same ){
+            	
+                holder.text.setText("Play all Albums");               
+               	 b = BitmapFactory.decodeFile("/sdcard/iCua/art/artist/"+aIds[position]+".jpg");
+               	 if (b == null){
+               		 b = BitmapFactory.decodeFile("/sdcard/iCua/art/artist/no_artist.jpg");
+               	 }
+            }else{
+            	int pos = position;
+            	if (this._same) pos = position-1;
+            	 holder.text.setText(DATA[pos]);
+                 b= BitmapFactory.decodeFile("/sdcard/iCua/art/album/"+mIds[pos]+".jpg");
+                 if (b == null){
+                 	 b = BitmapFactory.decodeFile("/sdcard/iCua/art/artist/"+aIds[pos]+".jpg");
+                 }
+                 if (b == null){
+                	 b = BitmapFactory.decodeFile("/sdcard/iCua/art/artist/no_artist.jpg");
+                }
+            	
+            	
             }
-            if (b == null){
-           	 b = BitmapFactory.decodeFile("/sdcard/iCua/art/artist/none.jpg");
-           }
+            
+           
             
             holder.icon.setImageBitmap(b);
 
@@ -166,7 +190,8 @@ public class AlbumsList extends ListActivity {
     	
     	
     	super.onCreate(savedInstanceState);
-    	adp = new EfficientAdapter(this,a);
+    	
+    	adp = new EfficientAdapter(this,a,id_artista!=-1);
         setListAdapter(adp);
        
       
@@ -180,17 +205,28 @@ public class AlbumsList extends ListActivity {
     	// TODO Auto-generated method stub
     	  v.startAnimation( anim );
 
-    
-    	Album aux =(Album)adp.getItem(position);
-    	
-    	//Toast.makeText(this,aux.name+" "+position ,Toast.LENGTH_LONG );
-    	
-    	
-    	Intent i = new Intent(this, SongsList.class);
-    	i.putExtra("id_artist", id_artista);    	
-    	i.putExtra("artist", nombre );
-    	i.putExtra("id_album", aux.id);
-    	i.putExtra("title", aux.name);
+    	  Intent i = null;
+    	  
+  
+    	  
+    	  if ((this.id_artista != -1) && (position==0)){
+    	 	  i= new Intent(this, OnAir.class);
+    	     	i.putExtra("timestamp", System.currentTimeMillis());
+    	    	i.putExtra("type", 3); 
+    	    	i.putExtra("artist", id_artista+"");    
+    		  
+    	  }else{
+    	  	  i= new Intent(this, SongsList.class);
+    	    	Album aux =(Album)adp.getItem(position);
+    	    	
+    	    	i.putExtra("id_artist", id_artista);    	
+    	    	i.putExtra("artist", nombre );
+    	    	i.putExtra("id_album", aux.id);
+    	    	i.putExtra("title", aux.name);
+    		  
+    	  }
+    	  
+
     	
     	startActivity(i);
     	

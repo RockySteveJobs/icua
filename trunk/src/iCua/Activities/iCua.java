@@ -14,6 +14,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+
+
 import iCua.Components.HorizontalSlider;
 import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
@@ -22,6 +24,9 @@ import iCua.Media.LastFMClient;
 import iCua.Media.Song;
 import iCua.Media.StreamingMediaPlayer;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -36,7 +41,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class iCua extends Activity {
     /** Called when the activity is first created. */
-    IPod mService = null;
+
     Button mKillButton;
     TextView mCallbackText;
 
@@ -47,6 +52,10 @@ public class iCua extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+
+        
+        
         setContentView(R.layout.main);
       //  ImageView portada = (ImageView) findViewById(R.id.ImageView01);
   
@@ -64,7 +73,8 @@ public class iCua extends Activity {
         CtrlData.scan();
 
         startService(new Intent("iCua.Services.REMOTE_SERVICE"));
-  
+   
+        
         
    }
 

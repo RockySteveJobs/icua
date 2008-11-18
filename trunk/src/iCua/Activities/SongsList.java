@@ -12,16 +12,9 @@ import iCua.Media.Song;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-
-import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
-
-import android.widget.ImageView;
 import android.widget.ListView;
 
 
@@ -32,22 +25,22 @@ import android.widget.ListView;
 public class SongsList  extends android.app.Activity implements
 AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener  {
 	
-	private String title = null;
-private int id_album = 0;
+
 private SongAdapter adp = null;
 private Animation anim= null;
 private View cache = null;
-
+private int id_album=0;
 private ListView lv =null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       
+    	super.onCreate(savedInstanceState);
         setContentView(R.layout.animations_main_screen);
         
         anim = AnimationUtils.loadAnimation(this, R.anim.magnify2);
         lv =(ListView) findViewById(android.R.id.list);
     	String id_artista = null;
-    	int id_album=0;
+    	
     	Bundle extras = getIntent().getExtras();
     	if (extras != null) {
     		 id_album = extras.getInt("id_album");
@@ -76,10 +69,17 @@ private ListView lv =null;
     		v.startAnimation(anim);
     	
     	Intent i = new Intent(this, OnAir.class);
-    	i.putExtra("type", 1);
      	i.putExtra("timestamp", System.currentTimeMillis());
-    	i.putExtra("song", ""+((Song)adp.getItem(position)).id);
-    
+     	
+     	if (position !=0){
+     		i.putExtra("type", 1);
+	    	i.putExtra("song", ""+((Song)adp.getItem(position)).id);
+     		
+     	}else{
+		    i.putExtra("type", 4);
+		    i.putExtra("album", id_album+"");
+     	}
+    	
     	//i.putExtra("artist", new String[]{mStrings[position] });
     	startActivity(i);
     	

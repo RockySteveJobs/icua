@@ -20,28 +20,29 @@ public class SongAdapter extends BaseAdapter{
 	@Override
 public int getCount() {
 
-	return mSongs.length;
+	return mSongs.length+1;
 }
 
 @Override
 public long getItemId(int position) {
-		
-	return mSongs[position].id;
+	if(position==0)return -1;
+	return mSongs[position-1].id;
 }
 
 @Override
 public Object getItem(int position) {
 	// TODO Auto-generated method stub
-	return mSongs[position];
+	if(position==0)return null;
+	return mSongs[position-1];
 }
 
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
 	// TODO Auto-generated method stub
-	
 	TextView txt = new TextView(mContext);
 	txt.setPadding(10, 10, 10, 10);
-	txt.setText(mSongs[position].title);
+	if (position==0)txt.setText("Play all songs");
+	else txt.setText(mSongs[position - 1].title);
 	
 	return txt;
 }

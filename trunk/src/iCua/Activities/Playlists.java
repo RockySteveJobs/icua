@@ -25,6 +25,9 @@ private Animation anim= null;
 private View cache = null;
 private int[] _pl= null;
 private ListView lv =null;
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,7 @@ private ListView lv =null;
         
         anim = AnimationUtils.loadAnimation(this, R.anim.magnify2);
         lv =(ListView) findViewById(android.R.id.list);
-        
+       
     ArrayList<String> playlists = new ArrayList<String>();
     ContentValues[] vc = CtrlData.getPlaylistsNames();
     _pl= new int[vc.length+1];
@@ -58,6 +61,8 @@ lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
     //    mContainer.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
     }
 
+   
+    
     @Override
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
     	// TODO Auto-generated method stub

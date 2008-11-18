@@ -11,6 +11,7 @@ import entagged.audioformats.AudioFile;
 import entagged.audioformats.AudioFileIO;
 import entagged.audioformats.exceptions.CannotReadException;
 
+
 import android.content.ContentValues;
 import android.database.sqlite.*;
 import android.database.*;
@@ -396,6 +397,16 @@ public static void updatePlaylist(int idplaylist, String name){
 	db.update("playlists", cv, "_id=",new String[] {idplaylist+""});
 	
 	db.close();
+	
+}
+
+
+public static void delPlaylist(int idplaylist){
+	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
+
+	 db.delete("plsongs", "playlist=?",new String[] { idplaylist+""});
+	 db.delete("playlists", "_id=?",new String[] { idplaylist+""});
+db.close();
 	
 }
 

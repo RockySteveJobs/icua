@@ -3,7 +3,10 @@ package iCua.Activities;
 import iCua.Data.CtrlData;
 import iCua.Media.Song;
 import android.app.Activity;
+import android.app.AlertDialog;
+
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.util.SparseBooleanArray;
@@ -17,7 +20,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
-
+import android.content.DialogInterface;
+import android.app.Dialog;
 public class AddContent extends Activity implements OnItemClickListener{
     private  String[] SONGS;
 	private   ListView     lv = null;
@@ -62,6 +66,7 @@ public class AddContent extends Activity implements OnItemClickListener{
     
     
     }
+    
     @Override
     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
     	// TODO Auto-generated method stub
@@ -82,11 +87,29 @@ public class AddContent extends Activity implements OnItemClickListener{
             // Cancel a previous call to startService().  Note that the
             // service will not actually stop at this point if there are
             // still bound clients.
-        	AddContent.this.finish();
+        	
+        	AlertDialog d =  new AlertDialog.Builder(AddContent.this).setIcon(R.drawable.icon).setTitle("Do you want to cancel?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                	AddContent.this.finish();
+                	CtrlData.delPlaylist(AddContent.this.id_pl);
+                    /* User clicked OK so do some stuff */
+                }
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                	AddContent.this.finish();
+                    /* User clicked Cancel so do some stuff */
+                }
+            })
+            .create();
+        	
+        	d.show();
+
         	
             
         }
     };
+    
     private OnClickListener lsave = new OnClickListener() {
         public void onClick(View v) {
             // Cancel a previous call to startService().  Note that the

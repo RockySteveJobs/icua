@@ -210,6 +210,15 @@ this.SetPlaylist(_arg0, _arg1, _arg2);
 reply.writeNoException();
 return true;
 }
+case TRANSACTION_LoadPlaylist:
+{
+data.enforceInterface(DESCRIPTOR);
+int _arg0;
+_arg0 = data.readInt();
+this.LoadPlaylist(_arg0);
+reply.writeNoException();
+return true;
+}
 case TRANSACTION_isPlaying:
 {
 data.enforceInterface(DESCRIPTOR);
@@ -563,6 +572,21 @@ _reply.recycle();
 _data.recycle();
 }
 }
+public void LoadPlaylist(int playlist) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+_data.writeInt(playlist);
+mRemote.transact(Stub.TRANSACTION_LoadPlaylist, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
 public boolean isPlaying() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -623,8 +647,9 @@ static final int TRANSACTION_tuneArtist = (IBinder.FIRST_CALL_TRANSACTION + 14);
 static final int TRANSACTION_tuneTag = (IBinder.FIRST_CALL_TRANSACTION + 15);
 static final int TRANSACTION_PlayStream = (IBinder.FIRST_CALL_TRANSACTION + 16);
 static final int TRANSACTION_SetPlaylist = (IBinder.FIRST_CALL_TRANSACTION + 17);
-static final int TRANSACTION_isPlaying = (IBinder.FIRST_CALL_TRANSACTION + 18);
-static final int TRANSACTION_basicTypes = (IBinder.FIRST_CALL_TRANSACTION + 19);
+static final int TRANSACTION_LoadPlaylist = (IBinder.FIRST_CALL_TRANSACTION + 18);
+static final int TRANSACTION_isPlaying = (IBinder.FIRST_CALL_TRANSACTION + 19);
+static final int TRANSACTION_basicTypes = (IBinder.FIRST_CALL_TRANSACTION + 20);
 }
 /**
      * Request the PID of this service, to do evil things with it.
@@ -647,6 +672,7 @@ public int tuneArtist(java.lang.String artist) throws android.os.RemoteException
 public int tuneTag(java.lang.String tag) throws android.os.RemoteException;
 public int PlayStream() throws android.os.RemoteException;
 public void SetPlaylist(java.lang.String song, java.lang.String artist, java.lang.String album) throws android.os.RemoteException;
+public void LoadPlaylist(int playlist) throws android.os.RemoteException;
 public boolean isPlaying() throws android.os.RemoteException;
 /**
      * This demonstrates the basic types that you can use as parameters

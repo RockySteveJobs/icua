@@ -70,6 +70,14 @@ public class MediaPlayeriCua extends MediaPlayer {
 		
 	}
 	
+	public void setPlaylist (int playlist){
+		Song[] tmp= CtrlData.getSongs(playlist);
+		_playlist = new Playlist(tmp);
+		
+		
+		
+	}
+	
 	public void setArtist(String artist){
 		
 		

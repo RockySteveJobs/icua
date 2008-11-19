@@ -62,6 +62,7 @@ String getArt();
     
 void SetPlaylist(String song, String artist, String album);
     
+    void LoadPlaylist(int playlist);
     
     boolean isPlaying();
     /**

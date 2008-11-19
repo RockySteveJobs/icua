@@ -303,6 +303,17 @@ public boolean isTimeStamp(long ts) throws RemoteException {
 	return timestamp == ts;
 }
 
+@Override
+public void LoadPlaylist(int playlist) throws RemoteException {
+	// TODO Auto-generated method stub
+	if (mp.isPlaying())	mp.stop();
+	mp.reset();
+	mp.setPlaylist(playlist);
+	mp.playSong();
+	
+	
+}
+
     };
 
     

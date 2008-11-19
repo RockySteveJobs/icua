@@ -89,7 +89,7 @@ public class AlbumsList extends ListActivity {
          * @see android.widget.ListAdapter#getItem(int)
          */
         public Object getItem(int position) {
-          	if (this._same)return  null;
+          	if (this._same) return (new Album(mIds[position-1], DATA[position-1], aIds[position-1]));
             return (new Album(mIds[position], DATA[position], aIds[position]));
         }
 

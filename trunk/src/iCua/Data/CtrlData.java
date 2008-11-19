@@ -378,6 +378,37 @@ public  static Song[] getSongs( String artist, String id_song, String album){
 		
 }
 
+public  static Song[] getSongs(int playlist){
+	
+	SQLiteDatabase db = SQLiteDatabase.openDatabase("//sdcard//iCua//data/iCua.db3",null,0);
+	
+	SQLiteQueryBuilder sqb = new SQLiteQueryBuilder();
+	
+	sqb.setTables("songs s INNER JOIN artists a, albums c, plsongs p ON (s.artist=a._id and s.album=c._id and s._id=p.song)");
+	
+	StringBuilder sb = null;
+	
+	sb = new StringBuilder();	
+	sb.append("p.playlist=");
+	DatabaseUtils.appendValueToSql(sb,playlist);
+		
+		//db.execSQL(sb.toString());
+
+	
+	Cursor c = sqb.query(db, new String[] {"s.filename",  "s.title", "a.name", "c.title", "a._id","c._id", "s._id"}, sb.toString(), null, null, null, "s.title", null);
+	int i =0;
+	Song [] res  =  new Song[c.getCount()];
+	while(c.moveToNext()){
+		res[i]= new Song(c.getInt(6),c.getString(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4),c.getInt(5));
+
+		i++;
+		
+	}
+	db.close();
+	return res;
+		
+}
+
 public static int createPlaylist(){
 	SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(new File("//sdcard//iCua//data/iCua.db3"),null);
 

@@ -68,13 +68,31 @@ lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,
     	// TODO Auto-generated method stub
   //      mImageView.setImageResource(PHOTOS_RESOURCES[position]);
  
-    		v.startAnimation(anim);
     	
-    	Intent i = new Intent(this, AddContent.class);
+    	v.startAnimation(anim);
+    	
+    	Intent i = null;
+    	
+    	if (position==0){
+    		
+    	    i=	new Intent(this, AddContent.class);
+    	    
+        	//i.putExtra("artist", new String[]{mStrings[position] });
+        	startActivity(i);
+    		
+    	}else{
+    		
+    	    i=	new Intent(this, OnAir.class);
+        	i.putExtra("type", 5);
+        	i.putExtra("playlist", _pl[position] );
+        	startActivity(i);
+    		
+    		
+    	}
+    	
+    	
+    	
 
-    
-    	//i.putExtra("artist", new String[]{mStrings[position] });
-    	startActivity(i);
     	
     }
        

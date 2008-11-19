@@ -63,6 +63,7 @@ public class OnAir extends Activity{
 	private String _artist=null;
 	private String _album = null;
 	private String _song = null;
+	private int _playlist = -1;
 	private long timestamp=-1;	
 
 	
@@ -105,7 +106,9 @@ public class OnAir extends Activity{
     		case 4:
     			_album = extras.getString("album");
     			break;
-    		
+    		case 5:
+    			_playlist = extras.getInt("playlist");
+    			break;		
     		};
     		
 
@@ -142,10 +145,12 @@ public class OnAir extends Activity{
         try {
         	if(typePlay != -1) {
         	if (!mSecondaryService.isTimeStamp(timestamp))
-        		mSecondaryService.SetPlaylist(_song, _artist, _album);        	
+        		
+        		 mSecondaryService.SetPlaylist(_song, _artist, _album);        	
         	mSecondaryService.setTimeStamp(timestamp);
         	
         	}
+        	if(_playlist!= -1) mSecondaryService.LoadPlaylist(_playlist);
         
         	
         	mSecondaryService.playSong();

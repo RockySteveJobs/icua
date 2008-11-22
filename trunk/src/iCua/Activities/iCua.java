@@ -72,7 +72,7 @@ public class iCua extends Activity {
  //       send(password,artist,track);
         CtrlData.scan();
 
-        startService(new Intent("iCua.Services.REMOTE_SERVICE"));
+
    
         
         

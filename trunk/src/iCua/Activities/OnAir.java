@@ -76,49 +76,12 @@ public class OnAir extends Activity{
         barra= (HorizontalSlider)findViewById(R.id.slider);
         barra.setMax(100);
         barra.setOnProgressChangeListener(lbarra);
- 
+    
         txt = (TextView) findViewById(R.id.txt);
         img = (ImageView) findViewById(R.id.cover);
         img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/album/137.jpg"));
 
-    	
-    	Bundle extras = getIntent().getExtras();
- 
-    	
-
-    	
-    	if (extras != null) {
-    		timestamp = extras.getLong("timestamp");
-    		// id_song = extras.getIntArray("id");
-    		typePlay = extras.getInt("type");
-    		switch (typePlay){
-    		
-    		case 1:
-    			_song = extras.getString("song");
-    			break;    			
-    		case 2:
-    			_album = extras.getString("album");
-    			_artist = extras.getString("artist");
-    			break;
-    		case 3:
-    			_artist = extras.getString("artist");
-    			break;
-    		case 4:
-    			_album = extras.getString("album");
-    			break;
-    		case 5:
-    			_playlist = extras.getInt("playlist");
-    			break;		
-    		};
-    		
-
-    	}
-    	
-  	  bindService(new Intent("iCua.Services.IRemoteService"),
-              mConnection, Context.BIND_AUTO_CREATE);
-      bindService(new Intent("iCua.Services.ISecondary"),
-              mSecondaryConnection, Context.BIND_AUTO_CREATE);
-      mIsBound = true;
+     
 
       bPause = (ImageButton)findViewById(R.id.stop);
       bPause.setOnClickListener(lstop);
@@ -133,6 +96,62 @@ public class OnAir extends Activity{
             
 
     }
+	
+	
+	@Override
+	protected void onResume() {
+	    startService(new Intent("iCua.Services.REMOTE_SERVICE"));
+    	Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+    		timestamp = extras.getLong("timestamp");
+    		// id_song = extras.getIntArray("id");
+    		typePlay = extras.getInt("type");
+    		
+    		switch (typePlay){
+    		
+    		case 1:
+    			/* *
+    			 * Play only one song selected
+    			 * */
+    			_song = extras.getString("song");
+    			break;    			
+    		case 2:
+    			/* *
+    			 * Play all album's songs of an artist
+    			 * */
+    			_album = extras.getString("album");
+    			_artist = extras.getString("artist");
+    			break;
+    		case 3:
+    			/* *
+    			 * Play all artist's songs
+    			 * */
+    			_artist = extras.getString("artist");
+    			break;
+    		case 4:
+    			/* *
+    			 * Play all album's songs
+    			 * */
+    			_album = extras.getString("album");
+    			break;
+    		case 5:
+    			/* *
+    			 * Play all playlists songs
+    			 * */
+    			_playlist = extras.getInt("playlist");
+    			break;		
+    		};
+    		
+
+    	}
+		  mIsBound = true;
+	  	  bindService(new Intent("iCua.Services.IRemoteService"),
+	              mConnection, Context.BIND_AUTO_CREATE);
+	      bindService(new Intent("iCua.Services.ISecondary"),
+	              mSecondaryConnection, Context.BIND_AUTO_CREATE);
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
 	
 	
 	
@@ -150,6 +169,7 @@ public class OnAir extends Activity{
         	mSecondaryService.setTimeStamp(timestamp);
         	
         	}
+        	
         	if(_playlist!= -1) mSecondaryService.LoadPlaylist(_playlist);
         
         	
@@ -368,6 +388,7 @@ try{
 	        	   mHandler.sendMessage(mHandler.obtainMessage(UPDATE_MSG, 0, 0));
 	  	         
 	        }
+	        
 	    };
 	    
 	    private static final int BUMP_MSG = 1;

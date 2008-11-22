@@ -128,7 +128,8 @@ public class MediaPlayeriCua extends MediaPlayer {
 	
 		public void playSong(){
 			try{
-				Song aux = _playlist.getSong();				
+				Song aux = _playlist.getSong();		
+				this.reset();
 				this.setDataSource("/sdcard/iCua/media/"+aux.filename);
 				this.prepare();
 				this.start();
@@ -145,6 +146,7 @@ public class MediaPlayeriCua extends MediaPlayer {
 			try{
 
 				this.stop();
+			
 				
 			}catch(Exception ex){
 				Log.w("asda", ex.getMessage());

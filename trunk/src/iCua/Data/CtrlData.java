@@ -425,7 +425,7 @@ public static void updatePlaylist(int idplaylist, String name){
 	ContentValues cv =  new ContentValues();
 	cv.put("name", name);
 	
-	db.update("playlists", cv, "_id=",new String[] {idplaylist+""});
+	db.update("playlists", cv, "_id="+idplaylist,null);
 	
 	db.close();
 	

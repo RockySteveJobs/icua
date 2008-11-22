@@ -1,5 +1,7 @@
 package iCua.Activities;
 
+
+
 import iCua.Data.CtrlData;
 import iCua.Media.Song;
 import android.app.Activity;
@@ -10,6 +12,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.util.SparseBooleanArray;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -38,23 +42,9 @@ public class AddContent extends Activity implements OnItemClickListener{
           Button bs = (Button) findViewById(R.id.BPLSave);
           bc.setOnClickListener(lcancel);
           bs.setOnClickListener(lsave);
-          
           lv =(ListView) findViewById(android.R.id.list);
      
-          todas = CtrlData.getSongs(null, null,null);
-          sel = new boolean[todas.length];
-          this.SONGS  = new String[todas.length];
-          
-          
-          id_pl= CtrlData.createPlaylist();
-          
-          for (int i = 0; i<todas.length; i++){
-        	 this.SONGS[i]= todas[i].artist+" - "+ todas[i].title;
-        	            
-        	  
-          }
-          lv.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_multiple_choice, this.SONGS));
+         
      
           lv.setOnItemClickListener(this);
        
@@ -97,7 +87,7 @@ public class AddContent extends Activity implements OnItemClickListener{
             })
             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                	AddContent.this.finish();
+                	
                     /* User clicked Cancel so do some stuff */
                 }
             })
@@ -115,6 +105,38 @@ public class AddContent extends Activity implements OnItemClickListener{
             // Cancel a previous call to startService().  Note that the
             // service will not actually stop at this point if there are
             // still bound clients.
+        
+        	 LayoutInflater factory = LayoutInflater.from(AddContent.this);
+             final View textEntryView = factory.inflate(R.layout.alert_dialog_text_entry, null);
+             AlertDialog d2= new AlertDialog.Builder(AddContent.this)
+                 .setIcon(R.drawable.icon)
+                 .setTitle("Put a Playlist name")
+                 .setView(textEntryView)
+                 .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                     public void onClick(DialogInterface dialog, int whichButton) {
+                    	TextView t = (TextView) textEntryView.findViewById(R.id.playlist_edit);
+                    	 	CtrlData.updatePlaylist(id_pl, t.getText().toString());
+                         /* User clicked OK so do some stuff */
+                     }
+                 })
+                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                     public void onClick(DialogInterface dialog, int whichButton) {
+                    	 	
+                         /* User clicked cancel so do some stuff */
+                     }
+                 }) .create();
+
+        
+             d2.show();
+                 
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
 
         	  
         }
@@ -127,6 +149,27 @@ public class AddContent extends Activity implements OnItemClickListener{
         "Foreign", "History", "Independent", "Romance", "Sci-Fi", "Television", "Thriller"
     };
     
+    
+    @Override
+    protected void onResume() {
+    	 todas = CtrlData.getSongs(null, null,null);
+         sel = new boolean[todas.length];
+         this.SONGS  = new String[todas.length];
+         
+         
+         id_pl= CtrlData.createPlaylist();
+         
+         for (int i = 0; i<todas.length; i++){
+       	 this.SONGS[i]= todas[i].artist+" - "+ todas[i].title;
+       	            
+       	  
+         }
+         lv.setAdapter(new ArrayAdapter<String>(this,
+               android.R.layout.simple_list_item_multiple_choice, this.SONGS));
+    	
+    	// TODO Auto-generated method stub
+    	super.onResume();
+    }
     
     
     

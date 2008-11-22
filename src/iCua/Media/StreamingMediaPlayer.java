@@ -26,13 +26,13 @@ import android.util.Log;
  */
 public class StreamingMediaPlayer extends MediaPlayer implements IMP {
 	
-    private static final int INTIAL_KB_BUFFER =  (128*30)/8;//assume 96kbps*10secs/8bits per byte
+    public static final int INTIAL_KB_BUFFER =  (128*30)/8;//assume 96kbps*10secs/8bits per byte
     private long tope= 0;
     private boolean streaming = false;
     private boolean init= false;
 	//  Track for display by progressBar
-	private int totalKbRead = 0;
-	
+	public int totalKbRead = 0;
+
 	// Create Handler to call View updates on the main UI thread.
 
 private Song nowSong= null;
@@ -137,6 +137,12 @@ public void setPlaylist(String a, String t, String ab) {
      * Download the url stream to a temporary location and then call the setDataSource  
      * for that local file
      */  
+    public int getBuffer(){
+    	
+    	return ((this.totalKbRead / INTIAL_KB_BUFFER)*100) ;
+    	
+    }
+    
     
     public void startSong(){
     	
@@ -259,7 +265,8 @@ public void setPlaylist(String a, String t, String ab) {
 		
         FileOutputStream out = new FileOutputStream(downloadingMediaFile);   
         byte buf[] = new byte[4096];
-        int totalBytesRead = 0, incrementalBytesRead = 0;
+       int   totalBytesRead = 0;
+         int incrementalBytesRead = 0;
         do {
         	int numread = stream.read(buf);   
             if (numread <= 0)   
@@ -269,6 +276,7 @@ public void setPlaylist(String a, String t, String ab) {
             incrementalBytesRead += numread;
             
             totalKbRead = totalBytesRead/1000;
+            
             testMediaBuffer();
          
         } while (validateNotInterrupted()&& !skipDownload);   
@@ -436,4 +444,20 @@ public void setPlaylist(String a, String t, String ab) {
     	isInterrupted = true;
     	validateNotInterrupted();
     }
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

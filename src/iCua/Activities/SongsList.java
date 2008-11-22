@@ -73,7 +73,7 @@ private ListView lv =null;
      	
      	if (position !=0){
      		i.putExtra("type", 1);
-	    	i.putExtra("song", ""+((Song)adp.getItem(position)).id);
+	    	i.putExtra("song", ""+(adp.getItemId(position)));
      		
      	}else{
 		    i.putExtra("type", 4);

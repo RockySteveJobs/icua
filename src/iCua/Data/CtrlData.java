@@ -56,7 +56,9 @@ public final class CtrlData {
 		db.execSQL("CREATE TABLE playlists (_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name TEXT)");
 		db.execSQL("CREATE TABLE plsongs (_id   INTEGER PRIMARY KEY AUTOINCREMENT , song  INTEGER NOT NULL , playlist  INTEGER NOT NULL )");
 		db.execSQL("CREATE TABLE songs( _id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, filename TEXT,album INTEGER, artist INTEGER )");
-	
+		db.execSQL("CREATE TABLE config (key INTEGER PRIMARY KEY  NOT NULL , v1 TEXT, v2 TEXT)");
+		db.execSQL("INSERT INTO config VALUES(0,'iCua','bocaboca')");
+		
 		
 		db.close();
 	}

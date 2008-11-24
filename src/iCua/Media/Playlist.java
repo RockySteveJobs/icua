@@ -6,11 +6,14 @@ public class Playlist {
 	private Song[] list = null;
 	
 	public Song getSong(){
-		
-		return list[pos];
-			
+		if (list.length>0)return list[pos];
+		else return null;
 	}
 	
+	public int getLenght(){
+		return list.length;
+		
+	}
 	public void nextSong(){
 		
 		if (pos == list.length-1){			

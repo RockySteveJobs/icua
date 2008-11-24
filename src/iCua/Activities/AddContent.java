@@ -116,7 +116,8 @@ public class AddContent extends Activity implements OnItemClickListener{
                      public void onClick(DialogInterface dialog, int whichButton) {
                     	TextView t = (TextView) textEntryView.findViewById(R.id.playlist_edit);
                     	 	CtrlData.updatePlaylist(id_pl, t.getText().toString());
-                         /* User clicked OK so do some stuff */
+                    	 	AddContent.this.finish();
+                    	 	/* User clicked OK so do some stuff */
                      }
                  })
                  .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

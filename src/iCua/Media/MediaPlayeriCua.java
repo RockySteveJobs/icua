@@ -62,17 +62,26 @@ public class MediaPlayeriCua extends MediaPlayer {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void setPlaylist (String artist, String song, String album){
+	public boolean setPlaylist (String artist, String song, String album){
 		Song[] tmp= CtrlData.getSongs(artist, song, album);
 		_playlist = new Playlist(tmp);
 		
+		boolean b = tmp.length!=0;
+	
+		if (b)_playlist = new Playlist(tmp);
 		
+		return b;
 		
 	}
 	
-	public void setPlaylist (int playlist){
+	public boolean setPlaylist (int playlist){
 		Song[] tmp= CtrlData.getSongs(playlist);
-		_playlist = new Playlist(tmp);
+		
+		boolean b = tmp.length!=0;
+	
+		if (b)_playlist = new Playlist(tmp);
+		
+		return b;
 		
 		
 		
@@ -126,19 +135,24 @@ public class MediaPlayeriCua extends MediaPlayer {
 	}
 	
 	
-		public void playSong(){
-			try{
-				Song aux = _playlist.getSong();		
-				this.reset();
-				this.setDataSource("/sdcard/iCua/media/"+aux.filename);
-				this.prepare();
-				this.start();
-				
-			}catch(Exception ex){
-				Log.w("asda", ex.getMessage());
+		public boolean playSong(){
+		
+			if(_playlist.getLenght()>0){
+			
+				try{
+					Song aux = _playlist.getSong();		
+					this.reset();
+					this.setDataSource("/sdcard/iCua/media/"+aux.filename);
+					this.prepare();
+					this.start();
+					return true;
+				}catch(Exception ex){
+					Log.w("asda", ex.getMessage());
+					
+				}
 				
 			}
-			
+			return false;
 		
 		}
 		

@@ -60,9 +60,9 @@ String getArt();
     
     int PlayStream();
     
-void SetPlaylist(String song, String artist, String album);
+boolean SetPlaylist(String song, String artist, String album);
     
-    void LoadPlaylist(int playlist);
+    boolean LoadPlaylist(int playlist);
     
     boolean isPlaying();
     /**

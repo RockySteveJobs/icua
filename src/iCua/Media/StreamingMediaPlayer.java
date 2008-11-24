@@ -276,8 +276,8 @@ public void setPlaylist(String a, String t, String ab) {
             incrementalBytesRead += numread;
             
             totalKbRead = totalBytesRead/1000;
-            
-            testMediaBuffer();
+            if (validateNotInterrupted())   testMediaBuffer();
+         
          
         } while (validateNotInterrupted()&& !skipDownload);   
         skipDownload = false;
@@ -289,10 +289,12 @@ public void setPlaylist(String a, String t, String ab) {
 
     private boolean validateNotInterrupted() {
 		if (isInterrupted) {
+			try{
 			if (this.isPlaying()) {
 				this.pause();
-				//mediaPlayer.release();
+				this.release();
 			}
+			}catch(Exception ex1){}
 			return false;
 		} else {
 			return true;

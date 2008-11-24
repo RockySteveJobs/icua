@@ -1,5 +1,7 @@
 package iCua.Media;
 
+import iCua.Data.CtrlData;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,6 +27,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import android.content.ContentValues;
 import android.util.Log;
 
 public class LastFMClient {
@@ -36,7 +39,7 @@ public class LastFMClient {
 	private String serverNP;
 	private String serverSB;
 	
-	public LastFMClient(String user, String pwd){
+	/*public LastFMClient(String user, String pwd){
 		
 		this.user= user;
 		this.pwd= pwd;		
@@ -46,7 +49,20 @@ public class LastFMClient {
 		
 		
 		
+	}*/
+	
+	public LastFMClient(){
+		ContentValues cv =CtrlData.getLastFMdata();
+		this.user= cv.getAsString("user");
+		this.pwd= cv.getAsString("pwd");		
+		 login();
+		loginScrb();
+		
+		
 	}
+	
+	
+	
 	
 	private static  String stringMD5(String msg) {
         String digestAlgo = "MD5";
@@ -265,7 +281,7 @@ public class LastFMClient {
 		
 		byte buf[] = new byte[11];  
 try {  
-	String path = "http://ws.audioscrobbler.com/radio/adjust.php?session="+this.key+"&url=lastfm://artist/"+artist;
+	String path = "http://ws.audioscrobbler.com/radio/adjust.php?session="+this.key+"&url=lastfm://artist/" + artist + "/similarartists";
 	URL url = new URL(path);  
      URLConnection cn = url.openConnection();  
      cn.connect();  

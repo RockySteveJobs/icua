@@ -206,8 +206,9 @@ java.lang.String _arg1;
 _arg1 = data.readString();
 java.lang.String _arg2;
 _arg2 = data.readString();
-this.SetPlaylist(_arg0, _arg1, _arg2);
+boolean _result = this.SetPlaylist(_arg0, _arg1, _arg2);
 reply.writeNoException();
+reply.writeInt(((_result)?(1):(0)));
 return true;
 }
 case TRANSACTION_LoadPlaylist:
@@ -215,8 +216,9 @@ case TRANSACTION_LoadPlaylist:
 data.enforceInterface(DESCRIPTOR);
 int _arg0;
 _arg0 = data.readInt();
-this.LoadPlaylist(_arg0);
+boolean _result = this.LoadPlaylist(_arg0);
 reply.writeNoException();
+reply.writeInt(((_result)?(1):(0)));
 return true;
 }
 case TRANSACTION_isPlaying:
@@ -555,10 +557,11 @@ _data.recycle();
 }
 return _result;
 }
-public void SetPlaylist(java.lang.String song, java.lang.String artist, java.lang.String album) throws android.os.RemoteException
+public boolean SetPlaylist(java.lang.String song, java.lang.String artist, java.lang.String album) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
+boolean _result;
 try {
 _data.writeInterfaceToken(DESCRIPTOR);
 _data.writeString(song);
@@ -566,26 +569,31 @@ _data.writeString(artist);
 _data.writeString(album);
 mRemote.transact(Stub.TRANSACTION_SetPlaylist, _data, _reply, 0);
 _reply.readException();
+_result = (0!=_reply.readInt());
 }
 finally {
 _reply.recycle();
 _data.recycle();
 }
+return _result;
 }
-public void LoadPlaylist(int playlist) throws android.os.RemoteException
+public boolean LoadPlaylist(int playlist) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
+boolean _result;
 try {
 _data.writeInterfaceToken(DESCRIPTOR);
 _data.writeInt(playlist);
 mRemote.transact(Stub.TRANSACTION_LoadPlaylist, _data, _reply, 0);
 _reply.readException();
+_result = (0!=_reply.readInt());
 }
 finally {
 _reply.recycle();
 _data.recycle();
 }
+return _result;
 }
 public boolean isPlaying() throws android.os.RemoteException
 {
@@ -671,8 +679,8 @@ public void seekSong(int pos) throws android.os.RemoteException;
 public int tuneArtist(java.lang.String artist) throws android.os.RemoteException;
 public int tuneTag(java.lang.String tag) throws android.os.RemoteException;
 public int PlayStream() throws android.os.RemoteException;
-public void SetPlaylist(java.lang.String song, java.lang.String artist, java.lang.String album) throws android.os.RemoteException;
-public void LoadPlaylist(int playlist) throws android.os.RemoteException;
+public boolean SetPlaylist(java.lang.String song, java.lang.String artist, java.lang.String album) throws android.os.RemoteException;
+public boolean LoadPlaylist(int playlist) throws android.os.RemoteException;
 public boolean isPlaying() throws android.os.RemoteException;
 /**
      * This demonstrates the basic types that you can use as parameters

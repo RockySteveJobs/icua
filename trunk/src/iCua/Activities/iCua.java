@@ -1,5 +1,6 @@
 package iCua.Activities;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -16,6 +17,8 @@ import org.apache.http.message.BasicNameValuePair;
 
 
 
+
+
 import iCua.Components.HorizontalSlider;
 import iCua.Data.CtrlData;
 import iCua.Data.LastFM;
@@ -28,6 +31,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.DatabaseUtils;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
@@ -44,65 +48,161 @@ public class iCua extends Activity {
 
     Button mKillButton;
     TextView mCallbackText;
-
-    
+    private int totalSongs =0;
+    private Dialog d = null;
     
 
     boolean mIsBound= false;
+    
+    @Override
+    protected void onResume() {
+        totalSongs = CtrlData.getTotalSongs();
+    	super.onResume();
+    }
+    
+    
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
 
-        
+       
         
         setContentView(R.layout.main);
       //  ImageView portada = (ImageView) findViewById(R.id.ImageView01);
   
         GridView gv = (GridView) findViewById(R.id.GridView01);
         gv.setAdapter(new ImageAdapter(this)); 
-
-        gv.setOnItemClickListener(l);
-        
+        gv.setOnItemClickListener(l);   
 
         
         //gv.setNumColumns(4);
 
-
+        sdcard();
  //       send(password,artist,track);
         CtrlData.scan();
+        
+
+        
+         d =new AlertDialog.Builder(this)
+        .setIcon(R.drawable.icon)
+        .setTitle("No Songs found.")
+        .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            	
+          
+                /* User clicked OK so do some stuff */
+
+            	}
+        }).create();
+       
 
 
    
         
         
    }
+    
+    private void sdcard(){
+    
+    	
+    	
+    	File f = new File("/sdcard/iCua");
+    	if (!f.exists()){
+    	
+		    	f = new File("/sdcard/iCua/media");
+		 		boolean b = f.mkdirs();
+		 		f = new File("/sdcard/iCua/data");
+		 		b = b && f.mkdirs();
+		 		f = new File("/sdcard/iCua/art/artist");
+		 		b = b && f.mkdirs();
+		 		f = new File("/sdcard/iCua/art/album");
+		 		b = b && f.mkdirs();
+    	
+
+    		if (!b){
+    		Dialog d =new AlertDialog.Builder(iCua.this)
+            .setIcon(R.drawable.icon)
+            .setTitle("Needs a SDCARD to run iCua")
+            .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                	
+                iCua.this.finish();
+                    /* User clicked OK so do some stuff */
+
+                	}
+            }).create();
+    		
+    		d.show();
+    
+    		}else{
+    			
+    			CtrlData.createDatabase();
+    		}
+    	}
+   
+    	
+    }
 
     private void goPlayNow(){
-    	Intent i = new Intent(this, OnAir.class);
-    	i.putExtra("type", 0);
-    	i.putExtra("timestamp", System.currentTimeMillis());
-    	startActivity(i);
     	
+    	if (totalSongs ==0){
+        	
+
+         	
+            d.show();
+       		
+       
+       		
+       		
+       	}else{
+    	
+    	
+	    	Intent i = new Intent(this, OnAir.class);
+	    	i.putExtra("type", 0);
+	    	i.putExtra("timestamp", System.currentTimeMillis());
+	    	startActivity(i);
+    	}	
     }
     
     private void goArtists(){
+    	if (totalSongs ==0){
+        	
+
+         	
+            d.show();
+       		
+       
+       		
+       		
+       	}else{
     	Intent i = new Intent(this, ArtistsList.class);
     	
     	startActivity(i);
-    	
+       	}
     }
     
     private void goAlbums(){
+    	if (totalSongs ==0){
+        	
+
+         	
+            d.show();
+       		
+       
+       		
+       		
+       	}else{
     	Intent i = new Intent(this, AlbumsList.class);
     	
     	startActivity(i);
-    	
+       	}
     }
     
     private void goRadio(){
-    	Intent i = new Intent(this, OnAirRadio.class);
-    	i.putExtra("type", -10);
+    	Intent i = new Intent(this, LastRadio.class);
+    
     //	Intent i = new Intent(this, LastRadio.class);
     	
     	startActivity(i);
@@ -117,12 +217,22 @@ public class iCua extends Activity {
     	
     }
     private void goPlaylists(){
-     	Intent i = new Intent(this, Playlists.class);
+    	if (totalSongs ==0){
+        	
+
+         	
+            d.show();
+       		
+       
+       		
+       		
+       	}else{
+    	Intent i = new Intent(this, Playlists.class);
     	startActivity(i);
-    	
+       	}
     }
     private void goConfig(){
-    	Intent i = new Intent(this, OnAir.class);
+    	Intent i = new Intent(this, Config.class);
     	i.putExtra("type", -10);
     	
     	startActivity(i);
@@ -162,10 +272,10 @@ public class iCua extends Activity {
 		          goPlaylists();
 		           break;
 		      case 6 :
-		    	  goStream();
+		    	  goConfig();
 		    	  break;
 		      case 7:
-		          goRadio();
+		    	  goAbout();
 		           break;
 
 		      default:

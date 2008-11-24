@@ -40,6 +40,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,20 +53,22 @@ import android.widget.Toast;
 public class OnAirRadio extends Activity implements OnCompletionListener{
 	
 	private StreamingMediaPlayer mp ;
-    
-    
+    private int radioCount =0;
+    private String radioName = null;
 	private boolean mIsRegistred = false;
 	private boolean mIsBound = false;
 	private ImageView img = null;
 	private TextView txt = null;
-	private ImageButton bNext,bPrev,bPause,bPlay;
+	private ImageButton bNext,bStop;
 	private HorizontalSlider barra;
 	private int typePlay = -1;
 	private String _artist=null;
 	private String _album = null;
 	private String _song = null;
 	private long timestamp=-1;	
+	private CheckBox c = null;
     LastFMClient lc ;
+    private Song playNow = null;
 	
     /**
      * testing progress dialog
@@ -81,14 +84,56 @@ public class OnAirRadio extends Activity implements OnCompletionListener{
      * */
     
     public void onCompletion(MediaPlayer arg0) {
+    	if (c.isChecked()){
+    		CtrlData.saveSong(playNow);
+    		c.setChecked(false);
+    	}
+
+    	File aux = new File(playNow.filename);
+    	aux.delete();
+    	lc.scroble(playNow.artist, playNow.title, "240", playNow.album);
+    	radioCount--;
+    	System.out.println("radiocount"+radioCount);
+    	if (radioCount<2)
+    	{    		
+    		Song[] tmp = lc.getSongs();    	
+    		for (int i = tmp.length-1; i>=0;i--) mp.addSong(tmp[i]);
+    		radioCount += tmp.length;
+    	}
+		
     	mp.nextSong();
-    	
+   
+    
     };
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		 setTheme(R.style.Theme_notitle);
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.onairradio);
+        lc = new LastFMClient();
+        
+        Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			typePlay = extras.getInt("type");
+			radioName=extras.getString("val");
+    		switch (typePlay){
+    		
+    		case 1:
+    			/* *
+    			 * Play only one song selected
+    			 * */
+    		lc.tuneArtist(radioName);
+    			break;    			
+    		case 2:
+    			/* *
+    			 * Play all album's songs of an artist
+    			 * */
+    			lc.tuneTag(radioName);
+    			break;
+    		}
+ 
+		}
+           
         mProgressHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -105,23 +150,26 @@ public class OnAirRadio extends Activity implements OnCompletionListener{
             }
         };
 
-        
+
    
 
         txt = (TextView) findViewById(R.id.txt);
         img = (ImageView) findViewById(R.id.cover);
-        
+        c = (CheckBox) findViewById(R.id.CheckSave);
+         bStop     = (ImageButton)findViewById(R.id.stop);
+         bStop.setOnClickListener(lstop);
       
    //     bNext = (ImageButton)findViewById(R.id.next);
   //      bNext.setOnClickListener(lnext);
         mProgressDialog = new ProgressDialog(OnAirRadio.this);
         mProgressDialog.setIcon(R.drawable.icon);
-        mProgressDialog.setTitle("Loading the Radio...");
+        mProgressDialog.setTitle("Loading "+radioName+" Radio...");
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         mProgressDialog.setMax(StreamingMediaPlayer.INTIAL_KB_BUFFER);
       
    
-        lc = new LastFMClient("cuacua", "bocaboca");
+
+        
         mp = new StreamingMediaPlayer(this);
         mp.setOnCompletionListener(this);
         init();
@@ -139,10 +187,13 @@ public class OnAirRadio extends Activity implements OnCompletionListener{
         try {
      
 
-        		Song[] tmp = lc.getSongs();
+        		Song[] tmp = null;
+        		do{
+        		tmp= lc.getSongs();
         		for (int i = tmp.length-1; i>=0;i--) mp.addSong(tmp[i]);
-        		
-        	
+        		radioCount += tmp.length;
+        		}while(radioCount<4);
+            	System.out.println("radiocount"+radioCount);
         		mp.playSong();
                 mProgress = 0;
                 mProgressDialog.setProgress(0);
@@ -169,7 +220,20 @@ public class OnAirRadio extends Activity implements OnCompletionListener{
 	
 
 		
-	
+    private OnClickListener lstop = new OnClickListener() {
+        public void onClick(View v) {
+            // Cancel a previous call to startService().  Note that the
+            // service will not actually stop at this point if there are
+            // still bound clients.
+        	
+        	mp.interrupt();
+        	File aux = new File(playNow.filename);
+        	aux.delete();
+               OnAirRadio.this.finish();
+                 
+        
+        }
+    };
 	
 	
 	   
@@ -203,11 +267,12 @@ public class OnAirRadio extends Activity implements OnCompletionListener{
 	                case UPDATE_MSG:
 
 	                	try{
-	                		
-//	                		txt.setText(saux.artist +" - " +saux.title );
-	                		Song s = mp.getSong();
-	                		String art = s.art;
-	                	    txt.setText(s.artist+" - "+s.title);
+	                		//	                		txt.setText(saux.artist +" - " +saux.title );
+	                		playNow = mp.getSong();
+	                	                		String art = playNow.art;
+	                	    txt.setText(playNow.artist+" - "+playNow.title);
+	                	    lc.playingNow(playNow.artist,playNow.title, "240",playNow.album);
+
 
 	                		File faux = new File(art);
 	                	     if (faux.exists())
@@ -221,7 +286,7 @@ public class OnAirRadio extends Activity implements OnCompletionListener{
 	                	     }
 	                	     
 	                	 
-	                	     
+	                	 		
 	                	}catch(Exception ex11){
 	                		
 	                		System.out.println(ex11.getMessage());

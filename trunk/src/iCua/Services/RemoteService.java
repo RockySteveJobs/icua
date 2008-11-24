@@ -84,7 +84,7 @@ public class RemoteService extends Service implements OnCompletionListener {
         mp = new MediaPlayeriCua();
         // Display a notification about us starting.
         showNotification();
-       lc = new LastFMClient("cuacua", "bocaboca");
+       lc = new LastFMClient();
         
        
       // Song[] lastsongs= LastFM.getSongs(key);
@@ -183,64 +183,77 @@ public class RemoteService extends Service implements OnCompletionListener {
         public void basicTypes(int anInt, long aLong, boolean aBoolean,
                 float aFloat, double aDouble, String aString) {
         }
-        @Override
+        
         public String getArt() throws RemoteException {
         	// TODO Auto-generated method stub
-        	return mp.getSong().art;
+        	Song tmp =mp.getSong();
+        	if (tmp != null)return tmp.art ;
+        	return "" ;
+        
         }
         
-        @Override
+        
         public int PlayStream() throws RemoteException {
         	// TODO Auto-generated method stub
         	return 0;
         }
         
-        @Override
+        
         public int tuneArtist(String artist) throws RemoteException {
         	// TODO Auto-generated method stub
         	return 0;
         }
         
-        @Override
+        
         public int tuneTag(String tag) throws RemoteException {
         	// TODO Auto-generated method stub
         	return 0;
         }
         
         
-        @Override
+        
         public int playSong() throws RemoteException {
-           if (!mp.isPlaying())mp.playSong();
-           updateNotification();
+         boolean b= false;
+        	try{
+        	if (!mp.isPlaying())b=mp.playSong();
+           
+        	
+        	if (b)updateNotification();     
+        	else return -1;
         	// TODO Auto-generated method stub
         	return 0;
+          }catch(Exception ex){
+        	  
+        	  return -1;
+        	  
+          }
         }
-        @Override
+        
         public int stopSong() throws RemoteException {
         	// TODO Auto-generated method stub
         		mp.stopSong();
         	return 0;
         }
-@Override
+
         public boolean isPlaying() throws RemoteException {
         	// TODO Auto-generated method stub
         	return isPlaying;
         }
 
- 		@Override
+ 		
  		public int getIdAlbum() throws RemoteException {
  			Song s=	mp.getSong();
  			
  			return s.id_album;
  		}
-		@Override
+		
  		public int getIdArtist() throws RemoteException {
  			Song s=	mp.getSong();
  			
  			return s.id_artist;
  		}
 		
-		@Override
+		
 		public int nextSong() throws RemoteException {
 			// TODO Auto-generated method stub
 			
@@ -248,7 +261,7 @@ public class RemoteService extends Service implements OnCompletionListener {
 			updateNotification();
 			return 0;
 		}
-		@Override
+		
 		public int prevSong() throws RemoteException {
 			// TODO Auto-generated method stub
 			
@@ -257,45 +270,57 @@ public class RemoteService extends Service implements OnCompletionListener {
 			return 0;
 		}
    
-    @Override
+    
     public String getArtist() throws RemoteException {
     	// TODO Auto-generated method stub
-    	return mp.getSong().artist ;
+    	Song tmp =mp.getSong();
+    	if (tmp != null)return tmp.artist ;
+    	return "" ;
+    	
     }
     
-    @Override
+    
     public int getDuration() throws RemoteException {
     	// TODO Auto-generated method stub
-    	return mp.getDuration();
-    }
-    @Override
-    public String getTitle() throws RemoteException {
-    	// TODO Auto-generated method stub
-    	return mp.getSong().title; 
+    	int res =0;
+    	try{
+    		res = mp.getDuration();
+    	}catch(Exception durationException){
+    
+    	}
+    	return res;
     }
     
-    @Override
+    public String getTitle() throws RemoteException {
+    	// TODO Auto-generated method stub
+    	Song tmp =mp.getSong();
+    	if (tmp != null)return tmp.title ;
+    	return "" ;
+    }
+    
+    
     public void seekSong(int pos) throws RemoteException {
     	// TODO Auto-generated method stub
      
     	mp.seekTo(pos);
     }
     
-@Override
-public void SetPlaylist(String song, String artist, String album)
+
+public boolean SetPlaylist(String song, String artist, String album)
 		throws RemoteException {
 	if (mp.isPlaying())	mp.stop();
 	mp.reset();
-	mp.setPlaylist(artist, song, album);
-	mp.playSong();
+	boolean b =mp.setPlaylist(artist, song, album);
+		if (b)mp.playSong();
 	
+	return b;	
 }
-    @Override
+    
     public void setTimeStamp(long ts) throws RemoteException {
     	// TODO Auto-generated method stub
     	timestamp = ts;
     }
-@Override
+
 public boolean isTimeStamp(long ts) throws RemoteException {
 	// TODO Auto-generated method stub
 	
@@ -303,15 +328,15 @@ public boolean isTimeStamp(long ts) throws RemoteException {
 	return timestamp == ts;
 }
 
-@Override
-public void LoadPlaylist(int playlist) throws RemoteException {
+
+public boolean LoadPlaylist(int playlist) throws RemoteException {
 	// TODO Auto-generated method stub
 	if (mp.isPlaying())	mp.stop();
 	mp.reset();
-	mp.setPlaylist(playlist);
-	mp.playSong();
+	boolean b = mp.setPlaylist(playlist);
+	if (b)mp.playSong();
 	
-	
+	return b;
 }
 
     };
@@ -326,7 +351,7 @@ public void LoadPlaylist(int playlist) throws RemoteException {
      * to schedule increments of our value.
      */
     private final Handler mHandler = new Handler() {
-        @Override public void handleMessage(Message msg) {
+         public void handleMessage(Message msg) {
             switch (msg.what) {
                 
                 // It is time to bump the value!

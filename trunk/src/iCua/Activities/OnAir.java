@@ -20,8 +20,11 @@ import iCua.Services.IRemoteService;
 import iCua.Services.IRemoteServiceCallback;
 import iCua.Services.ISecondary;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
@@ -65,7 +68,7 @@ public class OnAir extends Activity{
 	private String _song = null;
 	private int _playlist = -1;
 	private long timestamp=-1;	
-
+	private Dialog d = null;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +96,7 @@ public class OnAir extends Activity{
         bPrev.setOnClickListener(lprev);
         bPlay =(ImageButton)findViewById(R.id.pause);
         bPlay.setOnClickListener(lpause);
-            
+
 
     }
 	
@@ -159,28 +162,31 @@ public class OnAir extends Activity{
 	public void init() {
     	// TODO Auto-generated method stub
     	
-   
-           
+   boolean b = false;
+
         try {
         	if(typePlay != -1) {
-        	if (!mSecondaryService.isTimeStamp(timestamp))
-        		
-        		 mSecondaryService.SetPlaylist(_song, _artist, _album);        	
-        	mSecondaryService.setTimeStamp(timestamp);
-        	
+	        	if (!mSecondaryService.isTimeStamp(timestamp)){        		
+	        			b= mSecondaryService.SetPlaylist(_song, _artist, _album);    
+	        			mSecondaryService.setTimeStamp(timestamp);
+	        	}  
         	}
         	
-        	if(_playlist!= -1) mSecondaryService.LoadPlaylist(_playlist);
-        
-        	
+         	if(_playlist!= -1) {
+         	b=	mSecondaryService.LoadPlaylist(_playlist);
+         	}
+         	
+
+ 
         	mSecondaryService.playSong();
-             
+        	
             } catch (RemoteException ex) {
                
                 Toast.makeText(OnAir.this,
                         "Error al Reproducir",
                         Toast.LENGTH_SHORT).show();
             }
+           
 	}
    
 	private void setImage(){
@@ -245,7 +251,8 @@ try{
 		            if (mSecondaryService != null) {
 		                try {
 		                	mSecondaryService.stopSong();
-		                 
+		                	unbindService(mSecondaryConnection);
+		                	unbindService(mConnection);
 		                } catch (RemoteException ex) {
 		                   
 		                    Toast.makeText(OnAir.this,
@@ -253,7 +260,10 @@ try{
 		                            Toast.LENGTH_SHORT).show();
 		                }
 		            }
-		     	setImage();
+		     	//setImage();
+		     	
+		       stopService(new Intent("iCua.Services.REMOTE_SERVICE"));
+		       OnAir.this.finish();
 		        }
 		    };	
 	
@@ -401,7 +411,7 @@ try{
 	                  //  mCallbackText.setText("Received from service: " + );
 	                    break;
 	                case UPDATE_MSG:
-	                	setImage();
+	                	//setImage();
 	                break;
 	                default:
 	                    super.handleMessage(msg);

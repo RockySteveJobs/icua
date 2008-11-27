@@ -4,9 +4,18 @@ import iCua.Media.Album;
 import iCua.Media.Artist;
 import iCua.Media.Song;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.Random;
 
 import entagged.audioformats.AudioFile;
 import entagged.audioformats.AudioFileIO;
@@ -16,6 +25,8 @@ import entagged.audioformats.exceptions.CannotReadException;
 import android.content.ContentValues;
 import android.database.sqlite.*;
 import android.database.*;
+import android.util.Log;
+import android.webkit.DownloadListener;
 
 
 public final class CtrlData {
@@ -580,6 +591,137 @@ public  static Album[] getAlbums( ){
 	db.close();
 	return res;
 	
+}
+private static void download(String address, String localFileName) {
+	OutputStream out = null;
+	URLConnection conn = null;
+	InputStream  in = null;
+	try {
+		URL url = new URL(address);
+		out = new BufferedOutputStream(
+			new FileOutputStream(localFileName));
+		conn = url.openConnection();
+		in = conn.getInputStream();
+		byte[] buffer = new byte[1024];
+		int numRead;
+		long numWritten = 0;
+		while ((numRead = in.read(buffer)) != -1) {
+			out.write(buffer, 0, numRead);
+			numWritten += numRead;
+		}
+		System.out.println(localFileName + "\t" + numWritten);
+	} catch (Exception exception) {
+		exception.printStackTrace();
+	} finally {
+		try {
+			if (in != null) {
+				in.close();
+			}
+			if (out != null) {
+				out.close();
+			}
+		} catch (IOException ioe) {
+		}
+	}
+}
+public static String getLyric(String artist, String title) {
+	Random generator = new Random();
+
+	System.out.println("http://www.admiralo.com/t.php?a="+artist+"&t="+title);
+String address = "http://www.cuacua.org/lyrics.php?i="+generator.nextInt()+"&a="+URLEncoder.encode(artist)+"&t="+URLEncoder.encode(title);
+	//String address = "http://www.google.com";
+//	download(address, "/sdcard/11.txt");
+
+	
+	StringBuffer out = new StringBuffer();
+
+	try {
+		URL url = new URL(address);  
+		byte[] buffer = new byte[1024];
+        URLConnection cn = url.openConnection();  
+        cn.connect();  
+        InputStream stream = cn.getInputStream();  
+        if (stream == null) throw new RuntimeException("stream is null");  
+       
+        while (stream.read(buffer)>-1){        	
+        	out.append(new String(buffer));
+        }
+
+    	out.append(buffer.toString());
+            stream.close();  
+        
+            
+	} catch (IOException ex) {  
+                Log.e("RADIO", "error: " + ex.getMessage(), ex);  
+   }  
+		    
+		
+
+
+		
+	return out.toString();
+}
+
+public static String getLyric(String artist, String title,int  idsong) {
+
+	File ftmp = new File("/sdcard/iCua/lyrics/"+idsong);
+	StringBuffer out = new StringBuffer();
+	byte[] buffer = new byte[1024];
+	
+	if (!ftmp.exists()){
+		try {
+			
+			
+		FileOutputStream fout = new FileOutputStream(ftmp);
+		Random generator = new Random();
+	
+		String address = "http://www.cuacua.org/lyrics.php?i="+generator.nextInt()+"&a="+URLEncoder.encode(artist)+"&t="+URLEncoder.encode(title);
+		
+
+
+
+		URL url = new URL(address);  
+
+        URLConnection cn = url.openConnection();  
+        cn.connect();  
+        InputStream stream = cn.getInputStream();  
+        if (stream == null) throw new RuntimeException("stream is null");  
+       
+        while (stream.read(buffer)>-1){        	
+        	fout.write(buffer);
+        	out.append(new String(buffer));
+        }
+     	out.append(new String(buffer));
+        fout.write(buffer);
+            stream.close();  
+        fout.close();
+            
+	} catch (IOException ex) {  
+                Log.e("RADIO", "error: " + ex.getMessage(), ex);  
+   }  
+		    
+		
+
+	}else {
+	
+	try {
+
+        FileInputStream stream = new FileInputStream(ftmp);  
+       if (stream == null) throw new RuntimeException("stream is null");  
+      
+       while (stream.read(buffer)>-1){        	
+       	out.append(new String(buffer));
+       }
+
+   	out.append(new String(buffer));
+           stream.close();  
+       
+           
+	} catch (IOException ex) {  
+               Log.e("RADIO", "error: " + ex.getMessage(), ex);  
+  }  
+	}
+	return out.toString();
 }
 
 public  static Album[] getAlbums(int id_artist ){

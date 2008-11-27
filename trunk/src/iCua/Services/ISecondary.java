@@ -112,6 +112,14 @@ reply.writeNoException();
 reply.writeString(_result);
 return true;
 }
+case TRANSACTION_getIdSong:
+{
+data.enforceInterface(DESCRIPTOR);
+int _result = this.getIdSong();
+reply.writeNoException();
+reply.writeInt(_result);
+return true;
+}
 case TRANSACTION_getIdAlbum:
 {
 data.enforceInterface(DESCRIPTOR);
@@ -387,6 +395,23 @@ _data.recycle();
 }
 return _result;
 }
+public int getIdSong() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+int _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getIdSong, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readInt();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
 public int getIdAlbum() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -644,20 +669,21 @@ static final int TRANSACTION_getArtist = (IBinder.FIRST_CALL_TRANSACTION + 3);
 static final int TRANSACTION_getDuration = (IBinder.FIRST_CALL_TRANSACTION + 4);
 static final int TRANSACTION_getTitle = (IBinder.FIRST_CALL_TRANSACTION + 5);
 static final int TRANSACTION_getArt = (IBinder.FIRST_CALL_TRANSACTION + 6);
-static final int TRANSACTION_getIdAlbum = (IBinder.FIRST_CALL_TRANSACTION + 7);
-static final int TRANSACTION_getIdArtist = (IBinder.FIRST_CALL_TRANSACTION + 8);
-static final int TRANSACTION_playSong = (IBinder.FIRST_CALL_TRANSACTION + 9);
-static final int TRANSACTION_stopSong = (IBinder.FIRST_CALL_TRANSACTION + 10);
-static final int TRANSACTION_nextSong = (IBinder.FIRST_CALL_TRANSACTION + 11);
-static final int TRANSACTION_prevSong = (IBinder.FIRST_CALL_TRANSACTION + 12);
-static final int TRANSACTION_seekSong = (IBinder.FIRST_CALL_TRANSACTION + 13);
-static final int TRANSACTION_tuneArtist = (IBinder.FIRST_CALL_TRANSACTION + 14);
-static final int TRANSACTION_tuneTag = (IBinder.FIRST_CALL_TRANSACTION + 15);
-static final int TRANSACTION_PlayStream = (IBinder.FIRST_CALL_TRANSACTION + 16);
-static final int TRANSACTION_SetPlaylist = (IBinder.FIRST_CALL_TRANSACTION + 17);
-static final int TRANSACTION_LoadPlaylist = (IBinder.FIRST_CALL_TRANSACTION + 18);
-static final int TRANSACTION_isPlaying = (IBinder.FIRST_CALL_TRANSACTION + 19);
-static final int TRANSACTION_basicTypes = (IBinder.FIRST_CALL_TRANSACTION + 20);
+static final int TRANSACTION_getIdSong = (IBinder.FIRST_CALL_TRANSACTION + 7);
+static final int TRANSACTION_getIdAlbum = (IBinder.FIRST_CALL_TRANSACTION + 8);
+static final int TRANSACTION_getIdArtist = (IBinder.FIRST_CALL_TRANSACTION + 9);
+static final int TRANSACTION_playSong = (IBinder.FIRST_CALL_TRANSACTION + 10);
+static final int TRANSACTION_stopSong = (IBinder.FIRST_CALL_TRANSACTION + 11);
+static final int TRANSACTION_nextSong = (IBinder.FIRST_CALL_TRANSACTION + 12);
+static final int TRANSACTION_prevSong = (IBinder.FIRST_CALL_TRANSACTION + 13);
+static final int TRANSACTION_seekSong = (IBinder.FIRST_CALL_TRANSACTION + 14);
+static final int TRANSACTION_tuneArtist = (IBinder.FIRST_CALL_TRANSACTION + 15);
+static final int TRANSACTION_tuneTag = (IBinder.FIRST_CALL_TRANSACTION + 16);
+static final int TRANSACTION_PlayStream = (IBinder.FIRST_CALL_TRANSACTION + 17);
+static final int TRANSACTION_SetPlaylist = (IBinder.FIRST_CALL_TRANSACTION + 18);
+static final int TRANSACTION_LoadPlaylist = (IBinder.FIRST_CALL_TRANSACTION + 19);
+static final int TRANSACTION_isPlaying = (IBinder.FIRST_CALL_TRANSACTION + 20);
+static final int TRANSACTION_basicTypes = (IBinder.FIRST_CALL_TRANSACTION + 21);
 }
 /**
      * Request the PID of this service, to do evil things with it.
@@ -669,6 +695,7 @@ public java.lang.String getArtist() throws android.os.RemoteException;
 public int getDuration() throws android.os.RemoteException;
 public java.lang.String getTitle() throws android.os.RemoteException;
 public java.lang.String getArt() throws android.os.RemoteException;
+public int getIdSong() throws android.os.RemoteException;
 public int getIdAlbum() throws android.os.RemoteException;
 public int getIdArtist() throws android.os.RemoteException;
 public int playSong() throws android.os.RemoteException;

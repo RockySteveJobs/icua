@@ -119,6 +119,8 @@ public class iCua extends Activity {
 		 		b = b && f.mkdirs();
 		 		f = new File("/sdcard/iCua/art/album");
 		 		b = b && f.mkdirs();
+		 		f = new File("/sdcard/iCua/lyrics");
+		 		b = b && f.mkdirs();
     	
 
     		if (!b){

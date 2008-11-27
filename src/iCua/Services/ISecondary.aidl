@@ -40,6 +40,8 @@ interface ISecondary {
     
 String getArt();
     
+    int getIdSong();
+    
     int getIdAlbum();
     
     int getIdArtist();

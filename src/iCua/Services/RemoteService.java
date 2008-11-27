@@ -191,7 +191,11 @@ public class RemoteService extends Service implements OnCompletionListener {
         	return "" ;
         
         }
-        
+        @Override
+        public int getIdSong() throws RemoteException {
+        	// TODO Auto-generated method stub
+        	return mp.getSong().id;
+        }
         
         public int PlayStream() throws RemoteException {
         	// TODO Auto-generated method stub

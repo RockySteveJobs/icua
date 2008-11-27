@@ -8,6 +8,11 @@ import java.io.File;
 
 
 
+import  android.view.animation.Rotate3dAnimation;
+
+
+
+
 
 
 import iCua.Components.HorizontalSlider;
@@ -35,10 +40,17 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,12 +67,14 @@ public class OnAir extends Activity{
     /** Another interface we use on the service. */
     ISecondary mSecondaryService = null;
     
-    
+    private boolean blyr = false;
 	private boolean mIsRegistred = false;
 	private boolean mIsBound = false;
 	private ImageView img = null;
 	private TextView txt = null;
-	private ImageButton bNext,bPrev,bPause,bPlay;
+	private TextView txtlyric = null;
+	private ViewGroup mContainer = null;
+	private ImageButton bNext,bPrev,bPause,bPlay, bLyri;
 	private HorizontalSlider barra;
 	private int typePlay = -1;
 	private String _artist=null;
@@ -84,11 +98,16 @@ public class OnAir extends Activity{
         img = (ImageView) findViewById(R.id.cover);
         img.setImageBitmap(BitmapFactory.decodeFile("/sdcard/iCua/art/album/137.jpg"));
 
-     
+        txtlyric = (TextView) findViewById(R.id.TextLyric);
+        mContainer = (ViewGroup) findViewById(R.id.container);
 
       bPause = (ImageButton)findViewById(R.id.stop);
       bPause.setOnClickListener(lstop);
 
+      bLyri = (ImageButton)findViewById(R.id.lyrics);
+      bLyri.setOnClickListener(lblyr);
+
+      
         bNext = (ImageButton)findViewById(R.id.next);
         bNext.setOnClickListener(lnext);
         
@@ -97,6 +116,7 @@ public class OnAir extends Activity{
         bPlay =(ImageButton)findViewById(R.id.pause);
         bPlay.setOnClickListener(lpause);
 
+        mContainer.setPersistentDrawingCache(ViewGroup.PERSISTENT_ANIMATION_CACHE);
 
     }
 	
@@ -196,8 +216,12 @@ public class OnAir extends Activity{
     	
 try{
 	
+
+     
+
 //	txt.setText(saux.artist +" - " +saux.title );
 	String art = mSecondaryService.getArt();
+	
 	File faux = new File(art);
      if (faux.exists())
      {
@@ -210,6 +234,10 @@ try{
      }
      txt.setText(mSecondaryService.getArtist()+" - "+mSecondaryService.getTitle());
      barra.setMax(mSecondaryService.getDuration());
+     
+     String tmp = CtrlData.getLyric(mSecondaryService.getArtist(), mSecondaryService.getTitle(), mSecondaryService.getIdSong());
+     txtlyric.setText( Html.fromHtml( tmp));
+
      
 }catch(Exception ex11){
 	
@@ -234,10 +262,12 @@ try{
 		};
 		 private OnClickListener lpause = new OnClickListener() {
 		        public void onClick(View v) {
-		        	Intent i = new Intent(OnAir.this, iCua.class);
+		        	/*Intent i = new Intent(OnAir.this, iCua.class);
 		        	
-		        	startActivity(i);
-		        }
+		        	startActivity(i);*/
+		        	
+			    				        applyRotation(5, 360, 90);
+			    				 		        }
 		        	
 		          
 		    };	
@@ -423,6 +453,111 @@ try{
 	    
 	    
 	    
-	    
-	    
+	    /**
+	     * Setup a new 3D rotation on the container view.
+	     *
+	     * @param position the item that was clicked to show a picture, or -1 to show the list
+	     * @param start the start angle at which the rotation must begin
+	     * @param end the end angle of the rotation
+	     */
+	    private void applyRotation(int position, float start, float end) {
+	        // Find the center of the container
+	        final float centerX = mContainer.getWidth() / 2.0f;
+	        final float centerY = mContainer.getHeight() / 2.0f;
+
+	        // Create a new 3D rotation with the supplied parameter
+	        // The animation listener is used to trigger the next animation
+	        final Rotate3dAnimation rotation =
+	                new Rotate3dAnimation(start, end, centerX, centerY, 310.0f, true);
+	        rotation.setDuration(800);
+	        rotation.setFillAfter(true);
+	       // rotation.setFillBefore(true);
+	        rotation.setInterpolator(new AccelerateInterpolator());
+	        rotation.setAnimationListener(new DisplayNextView(position));
+
+	        mContainer.startAnimation(rotation);
+	    }
+
+	    public void onItemClick(AdapterView parent, View v, int position, long id) {
+	        // Pre-load the image then start the animation
+
+	    }
+
+	    public void onClick(View v) {
+	        applyRotation(-1, 180, 90);
+	    }
+
+	    /**
+	     * This class listens for the end of the first half of the animation.
+	     * It then posts a new action that effectively swaps the views when the container
+	     * is rotated 90 degrees and thus invisible.
+	     */
+	    private final class DisplayNextView implements Animation.AnimationListener {
+	        private final int mPosition;
+
+	        private DisplayNextView(int position) {
+	            mPosition = position;
+	        }
+
+	        public void onAnimationStart(Animation animation) {
+	        }
+
+	        public void onAnimationEnd(Animation animation) {
+	            mContainer.post(new SwapViews(mPosition));
+	        }
+
+	        public void onAnimationRepeat(Animation animation) {
+	        }
+	    }
+
+	    /**
+	     * This class is responsible for swapping the views and start the second
+	     * half of the animation.
+	     */
+	    private final class SwapViews implements Runnable {
+	        private final int mPosition;
+
+	        public SwapViews(int position) {
+	            mPosition = position;
+	        }
+
+	        public void run() {
+	            final float centerX = mContainer.getWidth() / 2.0f;
+	            final float centerY = mContainer.getHeight() / 2.0f;
+	           Rotate3dAnimation rotation;
+	            
+	            if (mPosition > -1) {
+	            	img.setVisibility(View.GONE);
+	                txtlyric.setVisibility(View.VISIBLE);
+	                txtlyric.requestFocus();
+
+	                rotation = new Rotate3dAnimation(90, 360, centerX, centerY, 310.0f, false);
+	            } else {
+	            	txtlyric.setVisibility(View.GONE);
+	            	img.setVisibility(View.VISIBLE);
+	            	img.requestFocus();
+
+	                rotation = new Rotate3dAnimation(90, 360, centerX, centerY, 310.0f, false);
+	            }
+
+	            rotation.setDuration(800);
+	            rotation.setFillAfter(true);
+	            rotation.setInterpolator(new DecelerateInterpolator());
+
+	            mContainer.startAnimation(rotation);
+	        }
+	    }
+
+		 private OnClickListener lblyr = new OnClickListener() {
+		        public void onClick(View v) {
+		        	/*Intent i = new Intent(OnAir.this, iCua.class);
+		        	
+		        	startActivity(i);*/
+		        	if (!blyr)applyRotation(5, 360, 90);
+		        	else applyRotation(-1, 360, 90);
+		        	blyr= !blyr;
+			    				 		        }
+		        	
+		          
+		    };	
 }

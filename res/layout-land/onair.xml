@@ -4,7 +4,7 @@
 
 
 
-<TableLayout android:id="@+id/TableLayout01" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="fill_parent" android:layout_width="fill_parent" android:fitsSystemWindows="true">
+<TableLayout android:id="@+id/container" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="fill_parent" android:layout_width="fill_parent" android:fitsSystemWindows="true">
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" 
 		android:id="@+id/txt"
 		android:text="Song - Artist"
@@ -26,6 +26,9 @@ android:textColor="#ffff6600"
 				<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/stop" android:src="@drawable/media_playback_stop">
 				</ImageButton><ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/next" android:src="@drawable/media_skip_forward">
 				</ImageButton>	
+				<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/lyrics_03" android:id="@+id/lyrics"></ImageButton>
+				
+			<TextView android:visibility="gone"  android:scaleType="fitCenter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TextLyric"></TextView>
 			
 			</TableRow>
 

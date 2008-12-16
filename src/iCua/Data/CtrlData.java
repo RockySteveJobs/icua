@@ -639,6 +639,7 @@ String address = "http://www.cuacua.org/lyrics.php?i="+generator.nextInt()+"&a="
 		URL url = new URL(address);  
 		byte[] buffer = new byte[1024];
         URLConnection cn = url.openConnection();  
+        cn.setRequestProperty("User-Agent", "iCua");
         cn.connect();  
         InputStream stream = cn.getInputStream();  
         if (stream == null) throw new RuntimeException("stream is null");  
@@ -683,6 +684,8 @@ public static String getLyric(String artist, String title,int  idsong) {
 		URL url = new URL(address);  
 
         URLConnection cn = url.openConnection();  
+        cn.setRequestProperty("User-Agent", "iCua");
+
         cn.connect();  
         InputStream stream = cn.getInputStream();  
         if (stream == null) throw new RuntimeException("stream is null");  

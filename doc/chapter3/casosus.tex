@@ -1,0 +1,37 @@
+\subsubsection{ESCOLTAR RADIO}
+
+Cas d'ús per a escoltar la radio.
+
+ACTOR => Usuari
+
+RESUM =>	L'usuari selecciona una emisora de LastFM, i la acaba escoltant.
+
+PRE => L'aplicació está corren.
+
+POST =>	L'usuari escolta la emisora solicitada.
+
+CURS TÍPIC D'ESDEVENIMENTS
+	
+1.1 L'usuarí accedeix a la pantalla de selecció d'emisora
+
+2.1 L'usuari seleccióna els atributs de cerca d'emisora, per artista o per tag, introdueix la paraula a cercar y apreta el botó de cerca.
+
+3.1 El sistema es conecta a Lastfm, Reprodueix l'emisora que coincideix amb les dades introduides per l'usuari, i mostra la informació relacionada amb la cançó que es reprodueix.
+
+4.1 L'usuari no apreta cap botó i deixa acabar la cançó.
+
+5.1 El sistema reprodueix la següent cançó
+
+CURS ALTERNATIU	
+
+1.2 Si el sistema no disposa d'un usuari vàlid a la configuració, el sistema retorna al usuari a la pantalla principal i l'alerta de que ha d'introduir un usuari vàlid per a LastFM.
+
+3.3 El sistema anula la compra y vacía el carrito del usuario
+
+4.2 El sistema indica que el producto deseado no esta dentro del stock
+
+4.3 El usuario escoge entre anular el producto o esperar a que esté disponible
+
+4.4 El sistema actualiza el carro de compra
+
+A   

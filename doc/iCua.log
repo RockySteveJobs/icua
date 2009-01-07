@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.8-beta-20080627 (MiKTeX 2.7) (preloaded format=pdflatex 2008.12.11)  25 DEC 2008 00:01
+This is pdfTeX, Version 3.1415926-1.40.8-beta-20080627 (MiKTeX 2.7) (preloaded format=pdflatex 2008.12.11)  5 JAN 2009 12:22
 entering extended mode
 **C:/svn4/doc/iCua.tex
 (C:/svn4/doc/iCua.tex
@@ -117,61 +117,58 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 LaTeX Warning: Citation `wiki:mashup' on page 11 undefined on input line 3.
 
-)
-Underfull \hbox (badness 10000) in paragraph at lines 2--10
+) (chapter2/requisits.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--10
+Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--10
+Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--10
+Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--10
+Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--10
+Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
-[11] (chapter2/requisits.tex
-Underfull \vbox (badness 3482) has occurred while \output is active []
-
- [12]
-[13])) (chapter2/eines.tex (chapter2/latex.tex [14]) (chapter2/argo.tex)
-(chapter2/eclipse.tex) (chapter2/java.tex) (chapter2/comunitat.tex)
-(chapter2/apis.tex))) (chapter3/chapter3.tex [15] [16
+[11] [12] [13])) (chapter2/eines.tex (chapter2/latex.tex [14])
+(chapter2/argo.tex) (chapter2/eclipse.tex) (chapter2/java.tex)
+(chapter2/comunitat.tex) (chapter2/apis.tex))) (chapter3/chapter3.tex [15]
+[16
 
 ]
 Cap\'{\i }tol 3.
-(chapter3/dissenyplataforma.tex) (chapter3/dissenyaplicacio.tex))
-(chapter4/chapter4.tex [17] [18
+(chapter3/dissenyplataforma.tex) (chapter3/dissenyaplicacio.tex [17]
+(chapter3/casosus.tex [18]))) (chapter4/chapter4.tex [19] [20
 
 ]
 Cap\'{\i }tol 4.
-[19]) [20] (iCua.aux)
+[21]) [22] (iCua.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 786 strings out of 95256
- 9339 string characters out of 1182181
+ 791 strings out of 95256
+ 9412 string characters out of 1182181
  64507 words of memory out of 1500000
- 3967 multiletter control sequences out of 110000
+ 3969 multiletter control sequences out of 110000
  10383 words of font info for 36 fonts, out of 1200000 for 2000
  40 hyphenation exceptions out of 8191
  24i,6n,24p,987b,211s stack positions out of 5000i,500n,10000p,200000b,5000s
@@ -183,9 +180,9 @@ fonts/type1/bluesky/cm/cmr17.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type
 1/bluesky/cm/cmr8.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/c
 m/cmsl12.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.
 pfb>
-Output written on iCua.pdf (20 pages, 77975 bytes).
+Output written on iCua.pdf (22 pages, 82685 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
+ 105 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

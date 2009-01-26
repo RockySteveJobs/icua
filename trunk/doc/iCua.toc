@@ -17,9 +17,9 @@
 \contentsline {subsubsection}{Emmagatzematge de dades amb SQLite}{11}
 \contentsline {subsubsection}{Streaming d'audio}{11}
 \contentsline {section}{\numberline {2.2}An\`alisi de l'aplicaci\'o}{11}
-\contentsline {subsection}{\numberline {2.2.1}Descripci\'o detallada de l'aplicaci\'o}{11}
-\contentsline {subsection}{\numberline {2.2.2}Requisits}{12}
-\contentsline {subsubsection}{Requisits No Funcionals}{12}
+\contentsline {subsection}{\numberline {2.2.1}Descripci\'o detallada de l'aplicaci\'o}{12}
+\contentsline {subsection}{\numberline {2.2.2}Requisits}{13}
+\contentsline {subsubsection}{Requisits No Funcionals}{13}
 \contentsline {subsubsection}{Requisits Funcionals}{13}
 \contentsline {section}{\numberline {2.3}Eines}{14}
 \contentsline {subsection}{\numberline {2.3.1} \textlatin {\LaTeX }}{14}

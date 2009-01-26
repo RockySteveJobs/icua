@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.8-beta-20080627 (MiKTeX 2.7) (preloaded format=pdflatex 2008.12.11)  5 JAN 2009 12:22
+This is pdfTeX, Version 3.1415926-1.40.8-beta-20080627 (MiKTeX 2.7) (preloaded format=pdflatex 2008.12.11)  25 JAN 2009 18:50
 entering extended mode
 **C:/svn4/doc/iCua.tex
 (C:/svn4/doc/iCua.tex
@@ -56,28 +56,66 @@ Some word breaks will not be found.
 \rightllkern=\dimen105
 \raiselldim=\dimen106
 ))
+("C:\Archivos de programa\MiKTeX 2.7\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Archivos de programa\MiKTeX 2.7\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+("C:\Archivos de programa\MiKTeX 2.7\tex\latex\graphics\graphics.sty"
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Archivos de programa\MiKTeX 2.7\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Archivos de programa\MiKTeX 2.7\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 90.
+
+("C:\Archivos de programa\MiKTeX 2.7\tex\latex\graphics\pdftex.def"
+File: pdftex.def 2007/06/12 v0.04h Graphics/color for pdfTeX
+\Gread@gobject=\count89
+))
+\Gin@req@height=\dimen107
+\Gin@req@width=\dimen108
+)
 \@indexfile=\write3
 
 Writing index file iCua.idx
 (iCua.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Info: Redefining \l on input line 7.
-LaTeX Info: Redefining \L on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Info: Redefining \l on input line 8.
+LaTeX Info: Redefining \L on input line 8.
+ ("C:\Archivos de programa\MiKTeX 2.7\tex\context\base\supp-pdf.tex"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count90
+\scratchdimen=\dimen109
+\scratchbox=\box26
+\nofMPsegments=\count91
+\nofMParguments=\count92
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count93
+\MPscratchDim=\dimen110
+\MPnumerator=\count94
+\everyMPtoPDFconversion=\toks18
+)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 9.
+(Font)              <14.4> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 9.
+(Font)              <7> on input line 10.
  [1
 
 
@@ -103,19 +141,26 @@ Cap\'{\i }tol 1.
 ]
 Cap\'{\i }tol 2.
 (chapter2/analisiPlataforma.tex (chapter2/introPlataforma.tex [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 11.
 
 ("C:\Archivos de programa\MiKTeX 2.7\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
 )
 (chapter2/llicencia.tex) (chapter2/versions.tex) (chapter2/funcionalitats.tex
-[8] [9]) (chapter2/puntsEstudi.tex [10])) (chapter2/analisiAplicacio.tex
+Underfull \vbox (badness 2529) has occurred while \output is active []
+
+ [8]
+[9]) (chapter2/puntsEstudi.tex [10]
+<images/icua.png, id=39, 100.375pt x 97.36375pt>
+File: images/icua.png Graphic file (type png)
+ <use images/icua.png>))
+(chapter2/analisiAplicacio.tex [11 <images/icua.png>]
 (chapter2/desAplicacio.tex
 
-LaTeX Warning: Citation `wiki:mashup' on page 11 undefined on input line 3.
+LaTeX Warning: Citation `wiki:mashup' on page 12 undefined on input line 3.
 
 ) (chapter2/requisits.tex
 Underfull \hbox (badness 10000) in paragraph at lines 2--1
@@ -147,10 +192,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--1
 
  []
 
-[11] [12] [13])) (chapter2/eines.tex (chapter2/latex.tex [14])
-(chapter2/argo.tex) (chapter2/eclipse.tex) (chapter2/java.tex)
-(chapter2/comunitat.tex) (chapter2/apis.tex))) (chapter3/chapter3.tex [15]
-[16
+[12] [13])) (chapter2/eines.tex (chapter2/latex.tex [14]) (chapter2/argo.tex)
+(chapter2/eclipse.tex) (chapter2/java.tex) (chapter2/comunitat.tex)
+(chapter2/apis.tex))) (chapter3/chapter3.tex [15] [16
 
 ]
 Cap\'{\i }tol 3.
@@ -165,13 +209,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 791 strings out of 95256
- 9412 string characters out of 1182181
- 64507 words of memory out of 1500000
- 3969 multiletter control sequences out of 110000
+ 1449 strings out of 95256
+ 17641 string characters out of 1182181
+ 71786 words of memory out of 1500000
+ 4604 multiletter control sequences out of 110000
  10383 words of font info for 36 fonts, out of 1200000 for 2000
  40 hyphenation exceptions out of 8191
- 24i,6n,24p,987b,211s stack positions out of 5000i,500n,10000p,200000b,5000s
+ 25i,6n,24p,987b,228s stack positions out of 5000i,500n,10000p,200000b,5000s
 <C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx10.pfb><C:/Arc
 hivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx12.pfb><C:/Archivos de 
 programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx8.pfb><C:/Archivos de programa/M
@@ -180,9 +224,9 @@ fonts/type1/bluesky/cm/cmr17.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type
 1/bluesky/cm/cmr8.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/c
 m/cmsl12.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.
 pfb>
-Output written on iCua.pdf (22 pages, 82685 bytes).
+Output written on iCua.pdf (22 pages, 91122 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
+ 108 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.8-beta-20080627 (MiKTeX 2.7) (preloaded format=pdflatex 2008.12.11)  1 FEB 2009 19:30
+This is pdfTeX, Version 3.1415926-1.40.8-beta-20080627 (MiKTeX 2.7) (preloaded format=pdflatex 2008.12.11)  16 FEB 2009 04:12
 entering extended mode
 **C:/svn4/doc/iCua.tex
 (C:/svn4/doc/iCua.tex
@@ -150,10 +150,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
 )
 (chapter2/llicencia.tex) (chapter2/versions.tex) (chapter2/funcionalitats.tex
-Underfull \vbox (badness 2529) has occurred while \output is active []
-
- [8]
-[9]) (chapter2/puntsEstudi.tex [10]
+[8] [9]) (chapter2/puntsEstudi.tex [10]
 <images/icua.png, id=39, 100.375pt x 97.36375pt>
 File: images/icua.png Graphic file (type png)
  <use images/icua.png>))
@@ -211,11 +208,11 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  1449 strings out of 95256
  17641 string characters out of 1182181
- 71786 words of memory out of 1500000
+ 70786 words of memory out of 1500000
  4604 multiletter control sequences out of 110000
  10383 words of font info for 36 fonts, out of 1200000 for 2000
  40 hyphenation exceptions out of 8191
- 25i,6n,24p,987b,228s stack positions out of 5000i,500n,10000p,200000b,5000s
+ 25i,6n,24p,987b,211s stack positions out of 5000i,500n,10000p,200000b,5000s
 <C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx10.pfb><C:/Arc
 hivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx12.pfb><C:/Archivos de 
 programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx8.pfb><C:/Archivos de programa/M
@@ -224,7 +221,7 @@ fonts/type1/bluesky/cm/cmr17.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type
 1/bluesky/cm/cmr8.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/c
 m/cmsl12.pfb><C:/Archivos de programa/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.
 pfb>
-Output written on iCua.pdf (22 pages, 91133 bytes).
+Output written on iCua.pdf (22 pages, 91473 bytes).
 PDF statistics:
  108 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

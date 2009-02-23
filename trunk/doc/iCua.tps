@@ -82,17 +82,17 @@ Class=CLatexEdit
 Document=chapter2\puntsEstudi.tex
 
 [Frame2_Row0]
-cyCur=166
+cyCur=532
 cyMin=10
 
 [Frame2_Col0]
-cxCur=422
+cxCur=939
 cxMin=10
 
 [Frame2_View0,0]
-Cursor.row=26
+Cursor.row=11
 Cursor.column=0
-TopSubLine=42
+TopSubLine=0
 
 [Frame3]
 Columns=1
@@ -353,5 +353,5 @@ cxMin=10
 [Frame11_View0,0]
 Cursor.row=12
 Cursor.column=0
-TopSubLine=15
+TopSubLine=16
 

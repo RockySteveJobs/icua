@@ -11,26 +11,26 @@
 \contentsline {subsection}{\numberline {2.1.2}Tipus de llicencia de la plataforma}{8}
 \contentsline {subsection}{\numberline {2.1.3}Evoluci\'o de Versions}{8}
 \contentsline {subsection}{\numberline {2.1.4}Funcionalitats}{9}
-\contentsline {subsection}{\numberline {2.1.5}Punts d'estudi}{10}
+\contentsline {subsection}{\numberline {2.1.5}Punts d'estudi}{11}
 \contentsline {subsubsection}{Reproducci\'o de fitxers MP3}{11}
 \contentsline {subsubsection}{Funcionament d'aplicaci\'ons en seg\'on pla}{11}
 \contentsline {subsubsection}{Emmagatzematge de dades amb SQLite}{11}
-\contentsline {subsubsection}{Streaming d'audio}{11}
-\contentsline {section}{\numberline {2.2}An\`alisi de l'aplicaci\'o}{11}
+\contentsline {subsubsection}{Streaming d'audio}{12}
+\contentsline {section}{\numberline {2.2}An\`alisi de l'aplicaci\'o}{12}
 \contentsline {subsection}{\numberline {2.2.1}Descripci\'o detallada de l'aplicaci\'o}{12}
 \contentsline {subsection}{\numberline {2.2.2}Requisits}{13}
 \contentsline {subsubsection}{Requisits No Funcionals}{13}
-\contentsline {subsubsection}{Requisits Funcionals}{13}
-\contentsline {section}{\numberline {2.3}Eines}{14}
-\contentsline {subsection}{\numberline {2.3.1} \textlatin {\LaTeX }}{14}
-\contentsline {subsubsection}{Per qu\`e \textlatin {\LaTeX }?}{14}
+\contentsline {subsubsection}{Requisits Funcionals}{14}
+\contentsline {section}{\numberline {2.3}Eines}{15}
+\contentsline {subsection}{\numberline {2.3.1} \textlatin {\LaTeX }}{15}
+\contentsline {subsubsection}{Per qu\`e \textlatin {\LaTeX }?}{15}
 \contentsline {subsubsection}{Utilitzaci\'o de \textlatin {\LaTeX }}{15}
-\contentsline {subsection}{\numberline {2.3.2}Argo UML}{15}
-\contentsline {subsubsection}{Llic\`encia}{15}
-\contentsline {subsection}{\numberline {2.3.3}Eclipse}{15}
-\contentsline {subsection}{\numberline {2.3.4}Java}{15}
-\contentsline {subsection}{\numberline {2.3.5}La comunitat Android}{15}
-\contentsline {subsection}{\numberline {2.3.6}APIs}{15}
+\contentsline {subsection}{\numberline {2.3.2}Argo UML}{16}
+\contentsline {subsubsection}{Llic\`encia}{16}
+\contentsline {subsection}{\numberline {2.3.3}Eclipse}{16}
+\contentsline {subsection}{\numberline {2.3.4}Java}{16}
+\contentsline {subsection}{\numberline {2.3.5}La comunitat Android}{16}
+\contentsline {subsection}{\numberline {2.3.6}APIs}{16}
 \contentsline {chapter}{\numberline {3}Disseny}{17}
 \contentsline {section}{\numberline {3.1}Disseny de la Plataforma}{17}
 \contentsline {subsection}{\numberline {3.1.1}Instroducci\'o a l'Enginyeria de Softare General}{17}

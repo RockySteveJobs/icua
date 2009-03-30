@@ -31,6 +31,8 @@
 \contentsline {subsection}{\numberline {2.3.4}Java}{16}
 \contentsline {subsection}{\numberline {2.3.5}La comunitat Android}{16}
 \contentsline {subsection}{\numberline {2.3.6}APIs}{16}
+\contentsline {subsubsection}{LastFM}{16}
+\contentsline {subsubsection}{cuacua Lyrics}{16}
 \contentsline {chapter}{\numberline {3}Disseny}{17}
 \contentsline {section}{\numberline {3.1}Disseny de la Plataforma}{17}
 \contentsline {subsection}{\numberline {3.1.1}Instroducci\'o a l'Enginyeria de Softare General}{17}

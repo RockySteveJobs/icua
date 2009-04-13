@@ -3,8 +3,8 @@
 \contentsline {section}{\numberline {1.1}Llic\`encia de la Documentaci\'o}{5}
 \contentsline {section}{\numberline {1.2}Motivacions inicials}{5}
 \contentsline {section}{\numberline {1.3}Objectius del Projecte}{5}
-\contentsline {section}{\numberline {1.4}Tasques a realitzar}{5}
-\contentsline {section}{\numberline {1.5}Estructura del document}{5}
+\contentsline {section}{\numberline {1.4}Tasques a realitzar}{6}
+\contentsline {section}{\numberline {1.5}Estructura del document}{6}
 \contentsline {chapter}{\numberline {2}An\`alisi}{7}
 \contentsline {section}{\numberline {2.1}An\`alisi de la plataforma}{7}
 \contentsline {subsection}{\numberline {2.1.1}Introducci\'o a la plataforma}{7}
@@ -18,32 +18,29 @@
 \contentsline {subsubsection}{Streaming d'audio}{12}
 \contentsline {section}{\numberline {2.2}An\`alisi de l'aplicaci\'o}{12}
 \contentsline {subsection}{\numberline {2.2.1}Descripci\'o detallada de l'aplicaci\'o}{12}
-\contentsline {subsection}{\numberline {2.2.2}Requisits}{13}
+\contentsline {subsection}{\numberline {2.2.2}An\'alisi de Requisits}{13}
 \contentsline {subsubsection}{Requisits No Funcionals}{13}
 \contentsline {subsubsection}{Requisits Funcionals}{14}
 \contentsline {section}{\numberline {2.3}Eines}{15}
 \contentsline {subsection}{\numberline {2.3.1} \textlatin {\LaTeX }}{15}
 \contentsline {subsubsection}{Per qu\`e \textlatin {\LaTeX }?}{15}
-\contentsline {subsubsection}{Utilitzaci\'o de \textlatin {\LaTeX }}{15}
+\contentsline {subsubsection}{Utilitzaci\'o de \textlatin {\LaTeX }}{16}
 \contentsline {subsection}{\numberline {2.3.2}Argo UML}{16}
 \contentsline {subsubsection}{Llic\`encia}{16}
 \contentsline {subsection}{\numberline {2.3.3}Eclipse}{16}
 \contentsline {subsection}{\numberline {2.3.4}Java}{16}
 \contentsline {subsection}{\numberline {2.3.5}La comunitat Android}{16}
 \contentsline {subsection}{\numberline {2.3.6}APIs}{16}
-\contentsline {subsubsection}{LastFM}{16}
-\contentsline {subsubsection}{cuacua Lyrics}{16}
-\contentsline {chapter}{\numberline {3}Disseny}{17}
-\contentsline {section}{\numberline {3.1}Disseny de la Plataforma}{17}
-\contentsline {subsection}{\numberline {3.1.1}Instroducci\'o a l'Enginyeria de Softare General}{17}
-\contentsline {subsection}{\numberline {3.1.2}Enginyeria de software sobre Android }{17}
-\contentsline {subsection}{\numberline {3.1.3}}{17}
-\contentsline {subsection}{\numberline {3.1.4}Funcionalitats}{17}
-\contentsline {subsection}{\numberline {3.1.5}Punts d'estudi}{17}
-\contentsline {section}{\numberline {3.2}Especificaci\'o i disseny de l'aplicaci\'o}{17}
-\contentsline {subsection}{\numberline {3.2.1}Introducci\'o al disseny i especificaci\'o}{17}
-\contentsline {subsection}{\numberline {3.2.2}Especificaci\'o}{17}
-\contentsline {subsection}{\numberline {3.2.3}Casos d'\'us}{18}
-\contentsline {subsubsection}{ESCOLTAR RADIO}{18}
-\contentsline {subsection}{\numberline {3.2.4}Patrons Aquitectonics i de Disseny}{19}
-\contentsline {chapter}{\numberline {4}Implementaci\'o}{21}
+\contentsline {subsubsection}{LastFM}{17}
+\contentsline {subsubsection}{cuacua Lyrics}{17}
+\contentsline {chapter}{\numberline {3}Disseny}{19}
+\contentsline {section}{\numberline {3.1}Disseny de la Plataforma}{19}
+\contentsline {subsection}{\numberline {3.1.1}Instroducci\'o a l'Enginyeria de Softare General}{19}
+\contentsline {subsection}{\numberline {3.1.2}Enginyeria de software sobre Android }{19}
+\contentsline {section}{\numberline {3.2}Especificaci\'o i disseny de l'aplicaci\'o}{19}
+\contentsline {subsection}{\numberline {3.2.1}Introducci\'o al disseny i especificaci\'o}{19}
+\contentsline {subsection}{\numberline {3.2.2}Especificaci\'o}{19}
+\contentsline {subsection}{\numberline {3.2.3}Casos d'\'us}{20}
+\contentsline {subsubsection}{ESCOLTAR RADIO}{20}
+\contentsline {subsection}{\numberline {3.2.4}Patrons Aquitectonics i de Disseny}{21}
+\contentsline {chapter}{\numberline {4}Implementaci\'o}{23}

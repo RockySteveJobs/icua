@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.4.13)  13 APR 2009 17:39
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.4.13)  3 JUN 2009 18:52
 entering extended mode
 **X:/iCua/svn4/doc/iCua.tex
 (X:/iCua/svn4/doc/iCua.tex
@@ -228,18 +228,19 @@ Cap\'{\i }tol 3.
 Underfull \vbox (badness 1014) has occurred while \output is active []
 
  [19]
-(chapter3/casosus.tex [20]))) (chapter4/chapter4.tex [21] [22
-
-]
+(chapter3/casosus.tex [20])) (chapter3/dissenyapis.tex [21]))
+(chapter4/chapter4.tex [22]
 Cap\'{\i }tol 4.
-[23]) [24] (iCua.aux)
+[23
+
+]) [24] (iCua.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 1463 strings out of 95255
- 17731 string characters out of 1182355
+ 1466 strings out of 95255
+ 17786 string characters out of 1182355
  71773 words of memory out of 1500000
  4617 multiletter control sequences out of 110000
  10383 words of font info for 36 fonts, out of 3000000 for 5000
@@ -252,7 +253,7 @@ y/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmr17.pfb><C
 :/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmr8.pfb><C:/Program Files/Mi
 KTeX 2.7/fonts/type1/bluesky/cm/cmsl12.pfb><C:/Program Files/MiKTeX 2.7/fonts/t
 ype1/bluesky/cm/cmsy10.pfb>
-Output written on iCua.pdf (24 pages, 95706 bytes).
+Output written on iCua.pdf (24 pages, 97710 bytes).
 PDF statistics:
  114 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

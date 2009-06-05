@@ -4,8 +4,8 @@ Version=2
 
 [SessionInfo]
 ActiveTab=2
-FrameCount=23
-ActiveFrame=2
+FrameCount=25
+ActiveFrame=8
 
 [Frame0]
 Columns=1
@@ -68,8 +68,8 @@ TopSubLine=0
 [Frame2]
 Columns=1
 Rows=1
-Flags=2
-ShowCmd=3
+Flags=0
+ShowCmd=1
 MinPos.x=-1
 MinPos.y=-1
 MaxPos.x=-4
@@ -82,16 +82,16 @@ Class=CLatexEdit
 Document=chapter2\puntsEstudi.tex
 
 [Frame2_Row0]
-cyCur=700
+cyCur=330
 cyMin=10
 
 [Frame2_Col0]
-cxCur=984
+cxCur=755
 cxMin=10
 
 [Frame2_View0,0]
-Cursor.row=5
-Cursor.column=158
+Cursor.row=11
+Cursor.column=0
 TopSubLine=0
 
 [Frame3]
@@ -179,7 +179,7 @@ cxMin=10
 [Frame5_View0,0]
 Cursor.row=7
 Cursor.column=141
-TopSubLine=6
+TopSubLine=5
 
 [Frame6]
 Columns=1
@@ -206,7 +206,7 @@ cxCur=755
 cxMin=10
 
 [Frame6_View0,0]
-Cursor.row=5
+Cursor.row=0
 Cursor.column=0
 TopSubLine=0
 
@@ -235,15 +235,15 @@ cxCur=755
 cxMin=10
 
 [Frame7_View0,0]
-Cursor.row=27
-Cursor.column=9
-TopSubLine=22
+Cursor.row=0
+Cursor.column=0
+TopSubLine=0
 
 [Frame8]
 Columns=1
 Rows=1
-Flags=0
-ShowCmd=1
+Flags=2
+ShowCmd=3
 MinPos.x=-1
 MinPos.y=-1
 MaxPos.x=-4
@@ -256,15 +256,15 @@ Class=CLatexEdit
 Document=chapter3\chapter3.tex
 
 [Frame8_Row0]
-cyCur=330
+cyCur=700
 cyMin=10
 
 [Frame8_Col0]
-cxCur=755
+cxCur=984
 cxMin=10
 
 [Frame8_View0,0]
-Cursor.row=0
+Cursor.row=4
 Cursor.column=0
 TopSubLine=0
 
@@ -293,8 +293,8 @@ cxCur=755
 cxMin=10
 
 [Frame9_View0,0]
-Cursor.row=8
-Cursor.column=29
+Cursor.row=0
+Cursor.column=0
 TopSubLine=0
 
 [Frame10]
@@ -353,7 +353,7 @@ cxMin=10
 [Frame11_View0,0]
 Cursor.row=12
 Cursor.column=0
-TopSubLine=16
+TopSubLine=18
 
 [Frame12]
 Columns=1
@@ -438,8 +438,8 @@ cxCur=826
 cxMin=10
 
 [Frame14_View0,0]
-Cursor.row=10
-Cursor.column=23
+Cursor.row=1
+Cursor.column=0
 TopSubLine=0
 
 [Frame15]
@@ -467,8 +467,8 @@ cxCur=756
 cxMin=10
 
 [Frame15_View0,0]
-Cursor.row=5
-Cursor.column=144
+Cursor.row=0
+Cursor.column=0
 TopSubLine=0
 
 [Frame16]
@@ -496,8 +496,8 @@ cxCur=756
 cxMin=10
 
 [Frame16_View0,0]
-Cursor.row=3
-Cursor.column=162
+Cursor.row=0
+Cursor.column=0
 TopSubLine=0
 
 [Frame17]
@@ -671,6 +671,64 @@ cxMin=10
 
 [Frame22_View0,0]
 Cursor.row=0
+Cursor.column=0
+TopSubLine=0
+
+[Frame23]
+Columns=1
+Rows=1
+Flags=0
+ShowCmd=1
+MinPos.x=-1
+MinPos.y=-1
+MaxPos.x=-4
+MaxPos.y=-23
+NormalPos.left=22
+NormalPos.top=22
+NormalPos.right=806
+NormalPos.bottom=522
+Class=CLatexEdit
+Document=chapter4\chapter4.tex
+
+[Frame23_Row0]
+cyCur=453
+cyMin=10
+
+[Frame23_Col0]
+cxCur=756
+cxMin=10
+
+[Frame23_View0,0]
+Cursor.row=0
+Cursor.column=0
+TopSubLine=0
+
+[Frame24]
+Columns=1
+Rows=1
+Flags=0
+ShowCmd=1
+MinPos.x=-1
+MinPos.y=-1
+MaxPos.x=-4
+MaxPos.y=-23
+NormalPos.left=44
+NormalPos.top=44
+NormalPos.right=828
+NormalPos.bottom=544
+Class=CLatexEdit
+Document=chapter3\dussebtapis.tex
+
+[Frame24_Row0]
+cyCur=453
+cyMin=10
+
+[Frame24_Col0]
+cxCur=756
+cxMin=10
+
+[Frame24_View0,0]
+Cursor.row=2
 Cursor.column=0
 TopSubLine=0
 

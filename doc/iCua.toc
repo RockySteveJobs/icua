@@ -43,4 +43,5 @@
 \contentsline {subsection}{\numberline {3.2.3}Casos d'\'us}{20}
 \contentsline {subsubsection}{ESCOLTAR RADIO}{20}
 \contentsline {subsection}{\numberline {3.2.4}Patrons Aquitectonics i de Disseny}{21}
+\contentsline {section}{\numberline {3.3}Especificaci\'o i disseny de les APISs}{21}
 \contentsline {chapter}{\numberline {4}Implementaci\'o}{23}
